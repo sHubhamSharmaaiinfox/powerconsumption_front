@@ -13,6 +13,13 @@ import AmpReading from "./userpages/AmpReading";
 import VoltMReading from "./userpages/VoltMReading";
 import MeterList from "./userpages/MeterList";
 import MeterView from "./userpages/MeterView";
+import AdminDashboard from "./adminpages/AdminDashboard";
+import UserListPage from "./adminpages/user-list";
+import Subscription from "./adminpages/subscription";
+import ActiveUsers from "./adminpages/activeuser-list";
+import InActiveUsers from "./adminpages/inactiveuser-list";
+import PendingRequests from "./adminpages/PendingRequests";
+import PaymentHistory from "./adminpages/PaymentHistory";
 
 
 
@@ -31,7 +38,13 @@ function App() {
         <Route exact path = '/amp-readings' element={<Protected_routes Component={AmpReading} />} />
         <Route exact path = '/volt-readings' element={<Protected_routes Component={VoltMReading} />} />
         <Route exact path = '/meter-list' element={<Protected_routes Component={MeterList}/>} />
-        <Route exact path = '/meter-view' element={<Protected_routes Component={MeterView}/>} />
+        <Route exact path = '/admin-dashboard' element={<Protected_routes Component={AdminDashboard }/>} />
+        <Route exact path = '/manage-subscription' element={<Protected_routes Component={Subscription }/>} />
+        <Route exact path = '/user-list' element={<Protected_routes Component={UserListPage }/>} />
+        <Route exact path = '/activeuser-list' element={<Protected_routes Component={ActiveUsers }/>} />
+        <Route exact path = '/inactiveuser-list' element={<Protected_routes Component={ InActiveUsers }/>} />
+        <Route exact path = '/pending-request' element={<Protected_routes Component={ PendingRequests }/>} />`
+        <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />`
       </Routes>
     </BrowserRouter>
   );

@@ -56,13 +56,7 @@ const MasterLayout = ({ children }) => {
         });
       });
     };
-
-    // Open the submenu that contains the open route
     openActiveDropdown();
-
-
-
-    // Cleanup event listeners on unmount
     return () => {
       dropdownTriggers.forEach((trigger) => {
         trigger.removeEventListener('click', handleDropdownClick);
