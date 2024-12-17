@@ -1,6 +1,39 @@
-import React from 'react'
+import React, {useEffect, useState  } from 'react'
 import { Icon } from '@iconify/react';
+import { apiGet, apiPost } from "../../services/client";
+
+
 const AdminCards = () => {
+    // States for dynamic data
+    const [users, setUsers] = useState([]);
+    const [totalUsers, setTotalUsers] = useState(0);
+    const [activeUsers, setActiveUsers] = useState(0);
+    const [inactiveUsers, setInactiveUsers] = useState(0);
+  
+    // Fetch user data
+    const fetchUserData = async () => {
+      try {
+        const res = await apiGet("admin/get-user");
+        if (res?.data?.status === true) {
+          const allUsers = res?.data?.data || [];
+          setUsers(allUsers);
+  
+          // Calculate metrics
+          setTotalUsers(allUsers.length);
+          setActiveUsers(allUsers.filter((user) => user.status === "1").length);
+          setInactiveUsers(allUsers.filter((user) => user.status !== "1").length);
+        } else {
+          console.log(res?.data?.message);
+        }
+      } catch (e) {
+        console.error("Error fetching user data:", e);
+      }
+    };
+  
+    useEffect(() => {
+      fetchUserData();
+    }, []);
+  
     return (
         <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
             <div className="col">
@@ -9,7 +42,7 @@ const AdminCards = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Total Users</p>
-                                <h6 className="mb-0">20,000</h6>
+                                <h6 className="mb-0">{totalUsers}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-cyan rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -37,7 +70,7 @@ const AdminCards = () => {
                                 <p className="fw-medium text-primary-light mb-1">
                                     Active Users
                                 </p>
-                                <h6 className="mb-0">5,000</h6>
+                                <h6 className="mb-0">{activeUsers}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-info rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -62,7 +95,7 @@ const AdminCards = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Inactive Users</p>
-                                <h6 className="mb-0">$42,000</h6>
+                                <h6 className="mb-0">{inactiveUsers}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon

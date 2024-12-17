@@ -18,7 +18,7 @@ const PaymentHistoryLayers = () => {
     const getData = async () => {
         try {
 
-            const res = await apiGet("admin/get-pending-payments");
+            const res = await apiGet("admin/get-payment ");
             console.log(res);
             if (res?.data?.status === true) {
                 setData(res?.data?.data);
@@ -56,7 +56,7 @@ const PaymentHistoryLayers = () => {
     return (
         <div className="card basic-data-table">
             <div className="card-header d-flex justify-content-between">
-                <h5 className="card-title mb-0">Pending Requests</h5>
+                <h5 className="card-title mb-0">Payment History</h5>
 
             </div>
 
@@ -99,13 +99,13 @@ const PaymentHistoryLayers = () => {
                                     <td>
                                         {item?.status === "0" ? (
                                             <span
-                                                className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white"
+                                                className="badge text-sm fw-semibold text-warning-600 bg-warning-100 px-20 py-9 radius-4 text-white"
                                             >
                                                 Pending
                                             </span>
                                         ) : item?.status === "1" ? (
                                             <span
-                                                className="badge text-sm fw-semibold text-warning-600 bg-warning-100 px-20 py-9 radius-4 text-white"
+                                                className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white"
                                             >
                                                 Completed
                                             </span>
@@ -113,7 +113,7 @@ const PaymentHistoryLayers = () => {
                                             <span
                                                 className="badge text-sm fw-semibold text-danger-600 bg-danger-100 px-20 py-9 radius-4 text-white"
                                             >
-                                                Pending
+                                                Canceled
                                             </span>
                                         )}
                                     </td>

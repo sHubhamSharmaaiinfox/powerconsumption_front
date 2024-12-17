@@ -8,6 +8,11 @@ const AdminMasterLayer = ({ children }) => {
     let [mobileMenu, setMobileMenu] = useState(false);
     const location = useLocation(); // Hook to get the current route
 
+    const Logout = () => {
+        localStorage.removeItem("token");
+     
+      };
+
     useEffect(() => {
         // Function to handle dropdown clicks
         const handleDropdownClick = (event) => {
@@ -86,17 +91,17 @@ const AdminMasterLayer = ({ children }) => {
                 <div>
                     <Link to="/" className="sidebar-logo">
                         <img
-                            src="assets/images/logo.png"
+                            src="assets/images/power.png"
                             alt="site logo"
                             className="light-logo"
                         />
                         <img
-                            src="assets/images/logo-light.png"
+                            src="assets/images/power.png"
                             alt="site logo"
                             className="dark-logo"
                         />
                         <img
-                            src="assets/images/logo-icon.png"
+                            src="assets/images/power.png"
                             alt="site logo"
                             className="logo-icon"
                         />
@@ -378,7 +383,7 @@ const AdminMasterLayer = ({ children }) => {
                                         data-bs-toggle="dropdown"
                                     >
                                         <img
-                                            src="assets/images/user.png"
+                                            src="assets/images/user-image.jpg"
                                             alt="image_user"
                                             className="w-40-px h-40-px object-fit-cover rounded-circle"
                                         />
@@ -387,7 +392,7 @@ const AdminMasterLayer = ({ children }) => {
                                         <div className="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
                                             <div>
                                                 <h6 className="text-lg text-primary-light fw-semibold mb-2">
-                                                    Shaidul Islam
+                                                    Parkash
                                                 </h6>
                                                 <span className="text-secondary-light fw-medium text-sm">Admin</span>
                                             </div>
@@ -429,7 +434,8 @@ const AdminMasterLayer = ({ children }) => {
                                             <li>
                                                 <Link
                                                     className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"
-                                                    to="#"
+                                                    to="/"
+                                                    onClick={Logout}
                                                 >
                                                     <Icon icon="lucide:power" className="icon text-xl" /> Log Out
                                                 </Link>

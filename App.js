@@ -20,6 +20,9 @@ import ActiveUsers from "./adminpages/activeuser-list";
 import InActiveUsers from "./adminpages/inactiveuser-list";
 import PendingRequests from "./adminpages/PendingRequests";
 import PaymentHistory from "./adminpages/PaymentHistory";
+import UserData from "./adminpages/User_profile_page";
+import meterData from "./adminpages/meter-details";
+
 
 
 
@@ -43,8 +46,10 @@ function App() {
         <Route exact path = '/user-list' element={<Protected_routes Component={UserListPage }/>} />
         <Route exact path = '/activeuser-list' element={<Protected_routes Component={ActiveUsers }/>} />
         <Route exact path = '/inactiveuser-list' element={<Protected_routes Component={ InActiveUsers }/>} />
-        <Route exact path = '/pending-request' element={<Protected_routes Component={ PendingRequests }/>} />`
-        <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />`
+        <Route exact path = '/pending-request' element={<Protected_routes Component={ PendingRequests }/>} />
+        <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />
+        <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
+        <Route exact path = '/meter-details' element={<Protected_routes Component={ meterData }/>} />
       </Routes>
     </BrowserRouter>
   );

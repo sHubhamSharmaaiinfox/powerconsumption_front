@@ -212,6 +212,7 @@ const SubscriptionLayers = () => {
                                                 type="button"
                                                 onClick={() => editItem?.id ? EditPackage(editItem.id) : CreatePackage()}
                                                 className="btn btn-primary text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32"
+                                                data-bs-dismiss="modal" aria-label="Close"
                                             >
                                                 Save Package
                                             </button>
