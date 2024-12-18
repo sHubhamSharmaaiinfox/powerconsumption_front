@@ -11,7 +11,7 @@ const MasterLayout = ({ children }) => {
 
   const Logout = () => {
     localStorage.removeItem("token");
- 
+
   };
 
   useEffect(() => {
@@ -109,12 +109,12 @@ const MasterLayout = ({ children }) => {
                 <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
                 <span>Dashboard</span>
               </Link>
-            
+
             </li>
 
             <li className="">
               <Link to="/volt-readings">
-                <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
+                <Icon icon="material-symbols:multiline-chart-rounded" className="menu-icon" />
                 <span>KWH Data</span>
               </Link>
             </li>
@@ -122,27 +122,30 @@ const MasterLayout = ({ children }) => {
 
             <li className="">
               <Link to="/amp-readings">
-                <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
+                <Icon icon="material-symbols:table-chart-view-outline-rounded" className="menu-icon" />
                 <span>Amp Readings</span>
               </Link>
-            
+
             </li>
 
 
             <li className="">
               <Link to="/anomalies">
-                <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
+                <Icon icon="material-symbols:person-alert-outline-rounded" className="menu-icon" />
                 <span>Alerts</span>
               </Link>
-            
+
             </li>
 
             <li className="">
               <Link to="/pricing">
-                <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
+                <Icon
+                  icon="fa-solid:award"
+                  className="menu-icon"
+                />
                 <span>Subscription</span>
               </Link>
-            
+
             </li>
 
 
@@ -229,7 +232,7 @@ const MasterLayout = ({ children }) => {
               <div className="d-flex flex-wrap align-items-center gap-3">
                 {/* ThemeToggleButton */}
                 <ThemeToggleButton />
-                
+
                 {/* Language dropdown end */}
                 {/* <div className="dropdown">
                   <button
@@ -609,7 +612,7 @@ const MasterLayout = ({ children }) => {
                           Inbox
                         </Link>
                       </li>
-          
+
                       <li>
                         <Link
                           className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"
@@ -638,7 +641,7 @@ const MasterLayout = ({ children }) => {
             <div className="col-auto">
               <p className="mb-0">© 2024 AIINFOX. All Rights Reserved.</p>
             </div>
-     
+
           </div>
         </footer>
       </main>

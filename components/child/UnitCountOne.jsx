@@ -5,15 +5,15 @@ import { useState, useEffect } from "react";
 
 const UnitCountOne = () => {
 
-    const [totalMeters,setTotalMeters] = useState(null);
-    const [overallConsumption,setOverallConsumption] = useState(null);
-    const [max_dropdown,setMaxDropdown] = useState(null);
-    const [powerGrowthRate,setPowerGrowthRate] = useState(null);
-    const [todays_power_consumed,setTodaysPowerConsumed] = useState(null);
-    const [monthly_power_consumed,setMonthlyPowerConsumed] = useState(null);
-    const [peak_power_today,setPeakPowerToday] = useState(null);
-    const [peak_power_this_month,setPeakPowerThisMonth] = useState(null);
-    const [all_time_peak_power,setAllTimePeakPower] = useState(null);
+    const [totalMeters,setTotalMeters] = useState(0);
+    const [overallConsumption,setOverallConsumption] = useState(0);
+    const [max_dropdown,setMaxDropdown] = useState(0);
+    const [powerGrowthRate,setPowerGrowthRate] = useState(0);
+    const [todays_power_consumed,setTodaysPowerConsumed] = useState(0);
+    const [monthly_power_consumed,setMonthlyPowerConsumed] = useState(0);
+    const [peak_power_today,setPeakPowerToday] = useState(0);
+    const [peak_power_this_month,setPeakPowerThisMonth] = useState(0);
+    const [all_time_peak_power,setAllTimePeakPower] = useState(0);
 
 
     const getMeterData = async () =>{

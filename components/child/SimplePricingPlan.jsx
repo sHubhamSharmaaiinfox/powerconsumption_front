@@ -58,7 +58,7 @@ const SimplePricingPlan = () => {
                                     <h3 className="mb-24">
                                     {item?.amount}{" "}
                                         <span className="fw-medium text-md text-secondary-light">
-                                            {item?.plan_period}/monthly
+                                           / {item?.plan_period} months
                                         </span>{" "}
                                     </h3>
                                     <span className="mb-20 fw-medium">What’s included</span>
@@ -96,7 +96,7 @@ const SimplePricingPlan = () => {
                                                 Normal support
                                             </span>
                                         </li>
-                                        <li className="d-flex align-items-center gap-16">
+                                        {/* <li className="d-flex align-items-center gap-16">
                                             <span className="w-24-px h-24-px d-flex justify-content-center align-items-center bg-primary-600 rounded-circle">
                                                 <Icon
                                                     icon="iconamoon:check-light"
@@ -106,17 +106,19 @@ const SimplePricingPlan = () => {
                                             <span className="text-secondary-light text-lg">
                                                 Up to 3 team members
                                             </span>
-                                        </li>
+                                        </li> */}
                                     </ul>
+                                    <Link to={`/Checkout-User?plan_id=${item?.id}`} className='w-100'>
                                     <button
 
                                         className="bg-primary-600 bg-hover-primary-700 text-white text-center border border-primary-600 text-sm btn-sm px-12 py-10 w-100 radius-8 mt-28"
 
                                     >
-                                        <Link to="/Checkout-User">
+                                        
                                         Get Started
-                                        </Link>
+                                        
                                     </button>
+                                    </Link>
                                 </div>
                             </div>
                      
