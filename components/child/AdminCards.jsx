@@ -13,15 +13,12 @@ const AdminCards = () => {
     // Fetch user data
     const fetchUserData = async () => {
       try {
-        const res = await apiGet("admin/get-user");
+        const res = await apiGet("admin/get-usercount");
         if (res?.data?.status === true) {
-          const allUsers = res?.data?.data || [];
-          setUsers(allUsers);
+          console.log(res?.data?.data);
+          setUsers(res?.data?.data);
   
-          // Calculate metrics
-          setTotalUsers(allUsers.length);
-          setActiveUsers(allUsers.filter((user) => user.status === "1").length);
-          setInactiveUsers(allUsers.filter((user) => user.status !== "1").length);
+          
         } else {
           console.log(res?.data?.message);
         }
@@ -37,12 +34,12 @@ const AdminCards = () => {
     return (
         <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-1 h-100">
+                <div className="card shadow-none border bg-gradient-start-1 ">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Total Users</p>
-                                <h6 className="mb-0">{totalUsers}</h6>
+                                <h6 className="mb-0">{users?.total_users}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-cyan rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -51,26 +48,21 @@ const AdminCards = () => {
                                 />
                             </div>
                         </div>
-                        <p className="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-                            <span className="d-inline-flex align-items-center gap-1 text-success-main">
-                                <Icon icon="bxs:up-arrow" className="text-xs" /> +5000
-                            </span>
-                            Last 30 days users
-                        </p>
+         
                     </div>
                 </div>
                 {/* card end */}
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 h-100">
+                <div className="card shadow-none border bg-gradient-start-3 ">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">
                                     Active Users
                                 </p>
-                                <h6 className="mb-0">{activeUsers}</h6>
+                                <h6 className="mb-0">{users?.active_users}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-info rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -79,23 +71,18 @@ const AdminCards = () => {
                                 />
                             </div>
                         </div>
-                        <p className="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-                            <span className="d-inline-flex align-items-center gap-1 text-success-main">
-                                <Icon icon="bxs:up-arrow" className="text-xs" /> +200
-                            </span>
-                            Last 30 days users
-                        </p>
+                       
                     </div>
                 </div>
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 h-100">
+                <div className="card shadow-none border bg-gradient-start-4 ">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Inactive Users</p>
-                                <h6 className="mb-0">{inactiveUsers}</h6>
+                                <h6 className="mb-0">{users?.inactive_users}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -104,25 +91,20 @@ const AdminCards = () => {
                                 />
                             </div>
                         </div>
-                        <p className="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-                            <span className="d-inline-flex align-items-center gap-1 text-success-main">
-                                <Icon icon="bxs:up-arrow" className="text-xs" /> +$20,000
-                            </span>
-                            Last 30 days income
-                        </p>
+                        
                     </div>
                 </div>
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 h-100">
+                <div className="card shadow-none border bg-gradient-start-2 ">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">
                                     Total Subscription
                                 </p>
-                                <h6 className="mb-0">15,000</h6>
+                                <h6 className="mb-0">{users?.total_subscriptions}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-purple rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -131,23 +113,62 @@ const AdminCards = () => {
                                 />
                             </div>
                         </div>
-                        <p className="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-                            <span className="d-inline-flex align-items-center gap-1 text-danger-main">
-                                <Icon icon="bxs:down-arrow" className="text-xs" /> -800
-                            </span>
-                            Last 30 days subscription
-                        </p>
+                        
                     </div>
                 </div>
                 {/* card end */}
             </div>
+
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5 h-100">
+                <div className="card shadow-none border bg-gradient-start-2 ">
+                    <div className="card-body p-20">
+                        <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                            <div>
+                                <p className="fw-medium text-primary-light mb-1">
+                                    Subscription Amount
+                                </p>
+                                <h6 className="mb-0">{users?.total_amount}</h6>
+                            </div>
+                            <div className="w-50-px h-50-px bg-purple rounded-circle d-flex justify-content-center align-items-center">
+                                
+                            <Icon icon="proicons:dollar-circle"  className="text-white text-2xl mb-0" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                {/* card end */}
+            </div>
+
+            <div className="col">
+                <div className="card shadow-none border bg-gradient-start-2 ">
+                    <div className="card-body p-20">
+                        <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                            <div>
+                                <p className="fw-medium text-primary-light mb-1">
+                                   Monthly Amount
+                                </p>
+                                <h6 className="mb-0">{users?.total_subscriptions}</h6>
+                            </div>
+                            <div className="w-50-px h-50-px bg-purple rounded-circle d-flex justify-content-center align-items-center">
+                            
+                                 <Icon icon="proicons:dollar-circle"  className="text-white text-2xl mb-0" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                {/* card end */}
+            </div>
+
+
+            <div className="col">
+                <div className="card shadow-none border bg-gradient-start-5 ">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Total Devices</p>
-                                <h6 className="mb-0">$30,000</h6>
+                                <h6 className="mb-0">{users?.total_meter}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -157,12 +178,7 @@ const AdminCards = () => {
 
                             </div>
                         </div>
-                        <p className="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-                            <span className="d-inline-flex align-items-center gap-1 text-success-main">
-                                <Icon icon="bxs:up-arrow" className="text-xs" /> +$5,000
-                            </span>
-                            Last 30 days expense
-                        </p>
+                      
                     </div>
                 </div>
                 {/* card end */}

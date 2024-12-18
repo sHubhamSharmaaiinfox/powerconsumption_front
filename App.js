@@ -22,6 +22,7 @@ import PendingRequests from "./adminpages/PendingRequests";
 import PaymentHistory from "./adminpages/PaymentHistory";
 import UserData from "./adminpages/User_profile_page";
 import meterData from "./adminpages/meter-details";
+import CheckoutUser from "./userpages/CheckoutPage";
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />
         <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
         <Route exact path = '/meter-details' element={<Protected_routes Component={ meterData }/>} />
+        <Route exact path = '/Checkout-User' element={<Protected_routes Component={ CheckoutUser }/>} />
       </Routes>
     </BrowserRouter>
   );

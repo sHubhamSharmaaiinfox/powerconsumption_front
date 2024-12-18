@@ -91,17 +91,17 @@ const AdminMasterLayer = ({ children }) => {
                 <div>
                     <Link to="/" className="sidebar-logo">
                         <img
-                            src="assets/images/power.png"
+                            src="assets/images/power-logo.png"
                             alt="site logo"
                             className="light-logo"
                         />
                         <img
-                            src="assets/images/power.png"
+                            src="assets/images/power-logo.png"
                             alt="site logo"
                             className="dark-logo"
                         />
                         <img
-                            src="assets/images/power.png"
+                            src="assets/images/power-logo.png"
                             alt="site logo"
                             className="logo-icon"
                         />
@@ -152,8 +152,8 @@ const AdminMasterLayer = ({ children }) => {
 
                         <li className="dropdown">
                             <Link to="#">
-                                <Icon icon="fa-solid:money-bill-wave" className="menu-icon" />
-                                <span>Payment management</span>
+                            <Icon icon="proicons:dollar-circle" className="menu-icon" />
+                                <span>Payment Management</span>
                             </Link>
                             <ul className="sidebar-submenu">
                                 <li>
@@ -408,15 +408,6 @@ const AdminMasterLayer = ({ children }) => {
                                                 >
                                                     <Icon icon="solar:user-linear" className="icon text-xl" /> My
                                                     Profile
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
-                                                    to="/email"
-                                                >
-                                                    <Icon icon="tabler:message-check" className="icon text-xl" />{" "}
-                                                    Inbox
                                                 </Link>
                                             </li>
                                             <li>
