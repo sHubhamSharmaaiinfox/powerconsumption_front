@@ -1,9 +1,11 @@
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useState } from "react";
-import React from 'react'
 import { apiPost } from "../services/client";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { toast,ToastContainer } from 'react-toastify';
+import React from 'react';
+
 
 const NewPasswordLayer = () => {
 
@@ -21,15 +23,18 @@ const NewPasswordLayer = () => {
 
     const newPassword = async () => {
         try {
+             
+
             setLoading(true)
             const data = { password, confirm_password }
             console.log(data);
             const res = await apiPost('reset-password', data);
-            console.log('response',res);
+            
          
             if (res?.data?.status == true) {
                 localStorage.setItem('token',res?.data?.token);
                 localStorage.setItem('role',res?.data?.role);
+                toast.success(res?.data?.message);
             
                 if (res?.data?.role=='user'){
                     navigate(`/dashboard`)
@@ -38,8 +43,7 @@ const NewPasswordLayer = () => {
                     navigate(`/admin-dashboard`)
                   }
             } else {
-                setError(res?.response?.data?.message);
-
+                toast.error(res?.data?.message) 
             }
         } catch (error) {
             setError(error);
@@ -50,6 +54,7 @@ const NewPasswordLayer = () => {
     }
     return (
         <section className="auth bg-base d-flex flex-wrap">
+              <ToastContainer/>
             <div className="auth-left d-lg-block d-none">
                 <div className="d-flex align-items-center flex-column h-100 justify-content-center">
                     <img src="assets/images/reset-pass-1.png" alt="" />

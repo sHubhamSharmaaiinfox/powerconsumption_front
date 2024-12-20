@@ -2904,7 +2904,7 @@ const useReactApexChart = () => {
     };
 
 
-    let columnChartSeriesTwo = [{
+    let         columnChartSeriesTwo = [{
         name: "Sales",
         data: [{
             x: 'Jan',

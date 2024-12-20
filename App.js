@@ -23,6 +23,8 @@ import PaymentHistory from "./adminpages/PaymentHistory";
 import UserData from "./adminpages/User_profile_page";
 import meterData from "./adminpages/meter-details";
 import CheckoutUser from "./userpages/CheckoutPage";
+import PaymentSettings from "./adminpages/Payment-Setting";
+import AddMeter from "./userpages/AddMeter";
 
 
 
@@ -52,6 +54,8 @@ function App() {
         <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
         <Route exact path = '/meter-details' element={<Protected_routes Component={ meterData }/>} />
         <Route exact path = '/Checkout-User' element={<Protected_routes Component={ CheckoutUser }/>} />
+        <Route exact path = '/payment-setting' element={<Protected_routes Component={ PaymentSettings }/>} />
+        <Route exact path = '/add-meter' element={<Protected_routes Component={ AddMeter }/>} />
       </Routes>
     </BrowserRouter>
   );

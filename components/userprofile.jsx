@@ -122,8 +122,8 @@ const UserProfile = () => {
                                 alt=""
                                 className="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover"
                             />
-                            <h6 className="mb-0 mt-16">{userData?.username}</h6>
-                            <span className="text-secondary-light mb-16">{userData?.email}</span>
+                            <h6 className="mb-0 mt-16">{userData?.userdata?.username}</h6>
+                            <span className="text-secondary-light mb-16">{userData?.userdata?.email}</span>
                         </div>
                         <div className="mt-24">
                             <h6 className="text-xl mb-16">Personal Info</h6>
@@ -133,7 +133,7 @@ const UserProfile = () => {
                                         Full Name
                                     </span>
                                     <span className="w-50 text-secondary-light fw-medium">
-                                        {userData?.first_name} {userData?.last_name}
+                                        {userData?.userdata?.first_name} {userData?.userdata?.last_name}
                                     </span>
                                 </li>
                                 <li className="d-flex align-items-center gap-1 mb-12">
@@ -142,7 +142,7 @@ const UserProfile = () => {
                                         Email
                                     </span>
                                     <span className="w-50 text-secondary-light fw-medium">
-                                       {userData?.email}
+                                       {userData?.userdata?.email}
                                     </span>
                                 </li>
                                 <li className="d-flex align-items-center gap-1 mb-12">
@@ -151,25 +151,17 @@ const UserProfile = () => {
                                         Username
                                     </span>
                                     <span className="w-50 text-secondary-light fw-medium">
-                                      {userData?.username}
+                                      {userData?.userdata?.username}
                                     </span>
                                 </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-50 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Membership Activiity
-                                    </span>
-                                    <span className="w-50 text-secondary-light fw-medium">
-                                       
-                                    </span>
-                                </li>
+                           
                                 <li className="d-flex align-items-center gap-1 mb-12">
                                     <span className="w-50 text-md fw-semibold text-primary-light">
                                         {" "}
                                         Membership Plan
                                     </span>
                                     <span className="w-50 text-secondary-light fw-medium">
-                                       
+                                       {userData?.plan_name}
                                     </span>
                                 </li>
                                 <li className="d-flex align-items-center gap-1 mb-12">
@@ -178,18 +170,10 @@ const UserProfile = () => {
                                        Total Devices
                                     </span>
                                     <span className="w-50 text-secondary-light fw-medium">
-                                       
+                                       {userData?.meter_count}
                                     </span>
                                 </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-50 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                      Adress
-                                    </span>
-                                    <span className="w-50 text-secondary-light fw-medium">
-                                       
-                                    </span>
-                                </li>
+                
                             </ul>
                         </div>
                     </div>

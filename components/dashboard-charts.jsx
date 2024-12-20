@@ -7,8 +7,11 @@ import React, { useEffect, useState } from "react";
 const  AdminDashCharts = () => {
 
 
+ 
+
 
         const [subscriptionData, setSubscriptionData] = useState([]);
+        const [metersdata, setMetersData] = useState(null);
     
         const getSubscription = async () => {
             try {
@@ -26,8 +29,25 @@ const  AdminDashCharts = () => {
             }
         };
 
+        const getMetres = async () => {
+            try {
+                const res = await apiGet("admin/deviceCountByMonth");
+                if (res?.data?.status === true) {
+                    console.log(res);
+                    const newData = res?.data?.data;
+                    setMetersData(newData);
+    
+                } else {
+                    console.log(res?.data?.message);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
         useEffect(() => {
-            getSubscription();       
+            getSubscription();
+            getMetres();       
         }, []);
     
     let { columnChartSeriesOne, columnChartOptionsOne, columnChartSeriesTwo, columnChartOptionsTwo, columnChartSeriesThree, columnChartOptionsThree, columnChartSeriesFour, columnChartOptionsFour } = useReactApexChart()
@@ -51,6 +71,7 @@ const  AdminDashCharts = () => {
                         <h6 className="text-lg fw-semibold mb-0">Total Subscription</h6>
                     </div>
                     <div className="card-body p-24">
+
                         <ReactApexChart id="columnGroupBarChart" options={columnChartOptionsTwo} series={columnChartSeriesTwo} type="bar" height={264} />
                     </div>
                 </div>
@@ -64,7 +85,10 @@ const  AdminDashCharts = () => {
                         <h6 className="text-lg fw-semibold mb-0">Total Devices</h6>
                     </div>
                     <div className="card-body p-24">
+                        { metersdata ?
+                    <ReactApexChart id="columnGroupBarChart" options={columnChartOptionsTwo} series={metersdata} type="bar" height={264} />:
                     <ReactApexChart id="columnGroupBarChart" options={columnChartOptionsTwo} series={columnChartSeriesTwo} type="bar" height={264} />
+                        }
                     </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@ const AdminMasterLayer = ({ children }) => {
 
     const Logout = () => {
         localStorage.removeItem("token");
-     
-      };
+
+    };
 
     useEffect(() => {
         // Function to handle dropdown clicks
@@ -152,7 +152,7 @@ const AdminMasterLayer = ({ children }) => {
 
                         <li className="dropdown">
                             <Link to="#">
-                            <Icon icon="proicons:dollar-circle" className="menu-icon" />
+                                <Icon icon="proicons:dollar-circle" className="menu-icon" />
                                 <span>Payment Management</span>
                             </Link>
                             <ul className="sidebar-submenu">
@@ -170,7 +170,7 @@ const AdminMasterLayer = ({ children }) => {
                                         <i className="ri-circle-fill circle-icon text-warning-main w-auto" />History
                                     </NavLink>
                                 </li>
-                              
+
                             </ul>
                         </li>
 
@@ -180,13 +180,30 @@ const AdminMasterLayer = ({ children }) => {
                             <Link to="/manage-subscription">
                                 <Icon
                                     icon="fa-solid:award"
-                                    className="menu-icon" 
+                                    className="menu-icon"
                                 />
                                 <span>Subscription</span>
                             </Link>
                         </li>
 
-                        
+                        <li className="dropdown">
+                            <Link to="#">
+                                <Icon icon="material-symbols-light:settings-b-roll-outline-rounded" className="menu-icon" />
+                                <span>Setting</span>
+                            </Link>
+                            <ul className="sidebar-submenu">
+                                <li>
+                                    <NavLink to="/payment-setting" className={(navData) =>
+                                        navData.isActive ? "active-page" : ""
+                                    }>
+                                        <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Payment Setting
+                                    </NavLink>
+                                </li>
+
+
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </aside>

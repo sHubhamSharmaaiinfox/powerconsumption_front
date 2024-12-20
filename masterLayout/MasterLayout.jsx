@@ -86,17 +86,17 @@ const MasterLayout = ({ children }) => {
         <div>
           <Link to="/" className="sidebar-logo">
             <img
-              src="assets/images/logo.png"
+              src="assets/images/power-logo.png"
               alt="site logo"
               className="light-logo"
             />
             <img
-              src="assets/images/logo-light.png"
+              src="assets/images/power-logo.png"
               alt="site logo"
               className="dark-logo"
             />
             <img
-              src="assets/images/logo-icon.png"
+              src="assets/images/power-logo.png"
               alt="site logo"
               className="logo-icon"
             />
@@ -110,6 +110,13 @@ const MasterLayout = ({ children }) => {
                 <span>Dashboard</span>
               </Link>
 
+            </li>
+
+            <li className="">
+              <Link to="/add-meter">
+                <Icon icon="solar:power-linear" className="menu-icon" />
+                <span>Add Meter</span>
+              </Link>
             </li>
 
             <li className="">
@@ -474,7 +481,7 @@ const MasterLayout = ({ children }) => {
                         <div className="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                           <span className="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
                             <img
-                              src="assets/images/notification/profile-1.png"
+                              src="assets/images/user-image.jpg"
                               alt=""
                             />
                           </span>
@@ -576,7 +583,7 @@ const MasterLayout = ({ children }) => {
                     data-bs-toggle="dropdown"
                   >
                     <img
-                      src="assets/images/user.png"
+                      src="assets/images/user-image.jpg"
                       alt="image_user"
                       className="w-40-px h-40-px object-fit-cover rounded-circle"
                     />

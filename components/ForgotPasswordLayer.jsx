@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from "react";
 import { apiPost } from "../services/client";
+import { ToastContainer, toast } from 'react-toastify'; 
 
 const ForgotPasswordLayer = () => {
 
@@ -20,14 +21,17 @@ const ForgotPasswordLayer = () => {
             console.log('response',res);
          
             if (res?.data?.status == true) {
-                console.log(res?.data)
+                console.log(res?.data);
+                toast.success("Link send successfully");
             } else {
                 console.log(res?.response?.data?.message);
+                toast.error(res?.response?.data?.message)    
 
             }
         } catch (error) {
         
-            console.log(error);
+            toast.error(error)  ;
+            console.log("hello");
         } finally {
             setLoading(false)
         }
@@ -36,6 +40,7 @@ const ForgotPasswordLayer = () => {
     return (
         <>
             <section className="auth forgot-password-page bg-base d-flex flex-wrap">
+            <ToastContainer/>
                 <div className="auth-left d-lg-block d-none">
                     <div className="d-flex align-items-center flex-column h-100 justify-content-center">
                         <img src="assets/images/forgot-pass.png" alt="" />

@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from 'react'
 import { apiPost } from "../services/client";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
 
 const SignInLayer = () => {
 
@@ -34,18 +35,20 @@ const SignInLayer = () => {
                     navigate(`/admin-dashboard`)
                   }
             } else {
-                setError(res?.response?.data?.message);
+                toast.error("Invalid Email or Password")    
 
             }
         } catch (error) {
-            setError(error);
+             toast.error("Invalid Email or Password")
             console.log(error);
         } finally {
             setLoading(false)
         }
     }
     return (
+        
         <section className="auth bg-base d-flex flex-wrap">
+              <ToastContainer/>
             <div className="auth-left d-lg-block d-none">
                 <div className="d-flex align-items-center flex-column h-100 justify-content-center">
                     <img src="assets/images/login-image.png" alt="" />

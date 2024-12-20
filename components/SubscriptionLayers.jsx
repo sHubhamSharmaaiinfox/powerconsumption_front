@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { apiGet, apiPost } from "../services/client";
 import moment from "moment";
 import { Cursor } from '@phosphor-icons/react';
+import { toast,ToastContainer } from 'react-toastify';
 
 const SubscriptionLayers = () => {
 
@@ -25,10 +26,10 @@ const SubscriptionLayers = () => {
 
             const res = await apiPost("admin/create-membership", dataToSave);
             if (res?.data?.status === true) {
-                console.log("Success");
+                toast.success("Success")
                 getData();
             } else {
-                console.log(res);
+                toast.error("error")
             }
         } catch (e) {
             console.log(e);
@@ -44,6 +45,7 @@ const SubscriptionLayers = () => {
         try{
             const res  = await apiPost("admin/membership-status",data);
             if (res?.data?.status == true){
+            toast.success("Success")
             getData();
             }else{
             console.log(res);
@@ -66,10 +68,10 @@ const SubscriptionLayers = () => {
         try{
             const res = await apiPost("admin/update-membership",data)
             if (res?.data?.status === true) {
-                console.log("Success");
+                toast.success("Success")
                 getData();
             } else {
-                console.log(res);
+                toast.error("Error")
             }
         }catch(e){
             console.log(e);
@@ -122,6 +124,7 @@ const SubscriptionLayers = () => {
 
     return (
         <div className="card basic-data-table">
+             <ToastContainer/>
             <div className="card-header d-flex justify-content-between">
                 <h5 className="card-title mb-0">All Packages</h5>
                 <Link
