@@ -2906,43 +2906,43 @@ const useReactApexChart = () => {
 
     let         columnChartSeriesTwo = [{
         name: "Sales",
-        data: [{
-            x: 'Jan',
-            y: 85000,
-        }, {
-            x: 'Feb',
-            y: 70000,
-        }, {
-            x: 'Mar',
-            y: 40000,
-        }, {
-            x: 'Apr',
-            y: 50000,
-        }, {
-            x: 'May',
-            y: 60000,
-        }, {
-            x: 'Jun',
-            y: 50000,
-        }, {
-            x: 'Jul',
-            y: 40000,
-        }, {
-            x: 'Aug',
-            y: 50000,
-        }, {
-            x: 'Sep',
-            y: 40000,
-        }, {
-            x: 'Oct',
-            y: 60000,
-        }, {
-            x: 'Nov',
-            y: 30000,
-        }, {
-            x: 'Dec',
-            y: 50000,
-        }]
+            data: [{
+                x: 'Jan',
+                y: 85000,
+            }, {
+                x: 'Feb',
+                y: 70000,
+            }, {
+                x: 'Mar',
+                y: 40000,
+            }, {
+                x: 'Apr',
+                y: 50000,
+            }, {
+                x: 'May',
+                y: 60000,
+            }, {
+                x: 'Jun',
+                y: 50000,
+            }, {
+                x: 'Jul',
+                y: 40000,
+            }, {
+                x: 'Aug',
+                y: 50000,
+            }, {
+                x: 'Sep',
+                y: 40000,
+            }, {
+                x: 'Oct',
+                y: 60000,
+            }, {
+                x: 'Nov',
+                y: 30000,
+            }, {
+                x: 'Dec',
+                y: 50000,
+            }]
     }]
 
     let columnChartOptionsTwo = {

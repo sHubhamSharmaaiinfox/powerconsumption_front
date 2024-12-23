@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
+import { apiGet, apiPost } from "../services/client";
 
 const AdminMasterLayer = ({ children }) => {
     let [sidebarActive, seSidebarActive] = useState(false);
     let [mobileMenu, setMobileMenu] = useState(false);
     const location = useLocation(); // Hook to get the current route
-
+     const [adminData, setAdminData] = useState(null);
     const Logout = () => {
         localStorage.removeItem("token");
 
@@ -80,6 +81,25 @@ const AdminMasterLayer = ({ children }) => {
     };
 
 
+  
+     const getAdminDetails = async () => {
+            try {
+                const res = await apiGet("admin/admin-profile");
+                if (res?.data?.status === true) {
+                    setAdminData(res?.data?.data);
+                   
+                } else {
+                    console.error(res?.data?.message);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        useEffect(() => {
+            getAdminDetails();
+        }, []);
+    
 
     return (
         <section className={mobileMenu ? "overlay active" : "overlay "}>
@@ -409,7 +429,7 @@ const AdminMasterLayer = ({ children }) => {
                                         <div className="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
                                             <div>
                                                 <h6 className="text-lg text-primary-light fw-semibold mb-2">
-                                                    Parkash
+                                                    {adminData?.first_name}  {adminData?.last_name}
                                                 </h6>
                                                 <span className="text-secondary-light fw-medium text-sm">Admin</span>
                                             </div>
@@ -421,24 +441,13 @@ const AdminMasterLayer = ({ children }) => {
                                             <li>
                                                 <Link
                                                     className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
-                                                    to="/view-profile"
+                                                    to="/admin-profile"
                                                 >
                                                     <Icon icon="solar:user-linear" className="icon text-xl" /> My
                                                     Profile
                                                 </Link>
                                             </li>
-                                            <li>
-                                                <Link
-                                                    className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
-                                                    to="/company"
-                                                >
-                                                    <Icon
-                                                        icon="icon-park-outline:setting-two"
-                                                        className="icon text-xl"
-                                                    />
-                                                    Setting
-                                                </Link>
-                                            </li>
+                                          
                                             <li>
                                                 <Link
                                                     className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"

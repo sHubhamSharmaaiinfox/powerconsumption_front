@@ -7,8 +7,7 @@ const AmpReading = () => {
   return (
     <>
       <MasterLayout>
-        <Breadcrumb title="Basic Table" />
-
+    
         <Amplayers />
 
       </MasterLayout>

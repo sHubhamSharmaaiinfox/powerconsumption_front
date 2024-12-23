@@ -101,8 +101,8 @@ const PaymentCheckout = () => {
     }, []);
 
     return (
-        <div className="d-flex w-100 card">
-            <div className="col-lg-12 d-flex w-100 gap-3 card-body">
+      
+            <div className="d-flex gap-2 ">
             <ToastContainer />
 
                 < div className="card col-lg-9">
@@ -179,8 +179,8 @@ const PaymentCheckout = () => {
                     <div className="card-body">
 
                         <div className=" d-flex flex-column justify-content-center align-items-center">
-                            <div style={{ textAlign: "center", marginTop: "50px" }}>
-                                <h2>Scan this QR Code</h2>
+                            <div style={{ textAlign: "center" }}>
+                                <h2 className="scanh2">Scan this QR Code</h2>
                                 { qrData ? 
                                 <QRCode 
                                 value={qrData} 
@@ -190,12 +190,12 @@ const PaymentCheckout = () => {
                                 
                                 />: <></>}
                             </div>
-                            <p className="pt-3">Pay quickly and securely with WR Code—scan to complete your transaction!</p>
+                            <p className="pt-3 text-center">Pay quickly and securely with WR Code—scan to complete your transaction!</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+     
     );
 };
 

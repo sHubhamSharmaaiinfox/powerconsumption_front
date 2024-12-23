@@ -25,7 +25,7 @@ const UserProfile = () => {
             const data = { id }; 
 
             setLoading(true);
-            const res = await apiPost("admin/user-detail", data); // API call to fetch user details
+            const res = await apiPost("admin/getuserdetail", data); // API call to fetch user details
             console.log("userdata",res);
 
             if (res?.data?.status === true) {

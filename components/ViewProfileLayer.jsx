@@ -1,11 +1,16 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { apiGet, apiPost } from "../services/client";
 
 const ViewProfileLayer = () => {
-    const [imagePreview, setImagePreview] = useState('assets/images/user-grid/user-grid-img13.png');
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-
+     const [passwordVisible, setPasswordVisible] = useState(false);
+     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+     const [userData, setUserData] = useState(null);
+     const [editItem, setEditItem] = useState({ first_name: '', last_name: '' });
+     const [passwordData, setPasswordData] = useState({ new_password: '', confirm_password: '' });
+     const [loading, setLoading] = useState(false);
+     const [passwordLoading, setPasswordLoading] = useState(false);
+    
     // Toggle function for password field
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -15,107 +20,92 @@ const ViewProfileLayer = () => {
     const toggleConfirmPasswordVisibility = () => {
         setConfirmPasswordVisible(!confirmPasswordVisible);
     };
-
-    const readURL = (input) => {
-        if (input.target.files && input.target.files[0]) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setImagePreview(e.target.result);
-            };
-            reader.readAsDataURL(input.target.files[0]);
-        }
-    };
+    const getUserDetails = async () => {
+           try {
+               const res = await apiGet("userapp/userprofile");
+               if (res?.data?.status === true) {
+                   setUserData(res?.data?.data);
+                   setEditItem({
+                       first_name: res?.data?.data?.first_name,
+                       last_name: res?.data?.data?.last_name
+                   });
+               } else {
+                   console.error(res?.data?.message);
+               }
+           } catch (error) {
+               console.error(error);
+           }
+       };
+   
+       const handleInputChange = (field, value) => {
+           setEditItem({ ...editItem, [field]: value });
+       };
+   
+       const EditUser = async () => {
+           const data = {
+               first_name: editItem.first_name,
+               last_name: editItem.last_name,
+           };
+           console.log(data);       
+           setLoading(true);
+           try {
+               const res = await apiPost("userapp/changeuserProfile", data);
+               if (res?.data?.status === true) {
+                   console.log("Profile updated successfully");
+                   getUserDetails(); // Refresh data
+               } else {
+                   console.error(res?.data?.message);
+               }
+           } catch (error) {
+               console.error(error);
+           } finally {
+               setLoading(false);
+           }
+       };
+   
+       const handlePasswordChange = (field, value) => {
+           setPasswordData({ ...passwordData, [field]: value });
+       };
+   
+       const ChangeUserPassword = async () => {
+           const data = {
+               password: passwordData.new_password,
+               confirm_password: passwordData.confirm_password,
+           };  
+           console.log(data);
+   
+           if (data.password !== data.confirm_password) {
+               alert("Passwords do not match!");
+               return;
+           }
+   
+           setPasswordLoading(true);
+           try {
+               const res = await apiPost("userapp/ChangeUserPass", data); 
+               console.log(res);
+               if (res?.data?.status === true) {
+                   console.log("Password updated successfully");
+                   alert("Password changed successfully");
+                   setPasswordData({ new_password: '', confirm_password: '' }); 
+               } else {
+                   console.error(res?.data?.message);
+                   alert(res?.data?.message || "Failed to update password");
+               }   
+           } catch (error) {
+               console.error(error);
+               alert("An error occurred while changing the password");
+           } finally {
+               setPasswordLoading(false);
+           }
+       };
+   
+       useEffect(() => {
+           getUserDetails();
+       }, []);
+   
     return (
         <div className="row gy-4">
-            <div className="col-lg-4">
-                <div className="user-grid-card position-relative border radius-16 overflow-hidden bg-base h-100">
-                    <img
-                        src="assets/images/user-grid/user-grid-bg1.png"
-                        alt=""
-                        className="w-100 object-fit-cover"
-                    />
-                    <div className="pb-24 ms-16 mb-24 me-16  mt--100">
-                        <div className="text-center border border-top-0 border-start-0 border-end-0">
-                            <img
-                                src="assets/images/user-grid/user-grid-img14.png"
-                                alt=""
-                                className="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover"
-                            />
-                            <h6 className="mb-0 mt-16">Jacob Jones</h6>
-                            <span className="text-secondary-light mb-16">ifrandom@gmail.com</span>
-                        </div>
-                        <div className="mt-24">
-                            <h6 className="text-xl mb-16">Personal Info</h6>
-                            <ul>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        Full Name
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : Will Jonto
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Email
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : willjontoax@gmail.com
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Phone Number
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : (1) 2536 2561 2365
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Department
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : Design
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Designation
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : UI UX Designer
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1 mb-12">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Languages
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : English
-                                    </span>
-                                </li>
-                                <li className="d-flex align-items-center gap-1">
-                                    <span className="w-30 text-md fw-semibold text-primary-light">
-                                        {" "}
-                                        Bio
-                                    </span>
-                                    <span className="w-70 text-secondary-light fw-medium">
-                                        : Lorem Ipsum&nbsp;is simply dummy text of the printing and
-                                        typesetting industry.
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-8">
+               <div className="col-lg-8">
                 <div className="card h-100">
                     <div className="card-body p-24">
                         <ul
@@ -176,38 +166,6 @@ const ViewProfileLayer = () => {
                                 aria-labelledby="pills-edit-profile-tab"
                                 tabIndex={0}
                             >
-                                <h6 className="text-md text-primary-light mb-16">Profile Image</h6>
-                                {/* Upload Image Start */}
-                                <div className="mb-24 mt-16">
-                                    <div className="avatar-upload">
-                                        <div className="avatar-edit position-absolute bottom-0 end-0 me-24 mt-16 z-1 cursor-pointer">
-                                            <input
-                                                type="file"
-                                                id="imageUpload"
-                                                accept=".png, .jpg, .jpeg"
-                                                hidden
-                                                onChange={readURL}
-                                            />
-                                            <label
-                                                htmlFor="imageUpload"
-                                                className="w-32-px h-32-px d-flex justify-content-center align-items-center bg-primary-50 text-primary-600 border border-primary-600 bg-hover-primary-100 text-lg rounded-circle"
-                                            >
-                                                <Icon icon="solar:camera-outline" className="icon"></Icon>
-                                            </label>
-                                        </div>
-                                        <div className="avatar-preview">
-                                            <div
-                                                id="imagePreview"
-                                                style={{
-                                                    backgroundImage: `url(${imagePreview})`,
-                                                    backgroundSize: 'cover',
-                                                    backgroundPosition: 'center'
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Upload Image End */}
                                 <form action="#">
                                     <div className="row">
                                         <div className="col-sm-6">
@@ -224,6 +182,8 @@ const ViewProfileLayer = () => {
                                                     className="form-control radius-8"
                                                     id="name"
                                                     placeholder="Enter First Name"
+                                                    value = {editItem.first_name}
+                                                    onChange={(e) => handleInputChange('first_name', e.target.value)}
                                                 />
                                             </div>
                                         </div>
@@ -242,24 +202,25 @@ const ViewProfileLayer = () => {
                                                     className="form-control radius-8"
                                                     id="name"
                                                     placeholder="Enter Last Name"
+                                                    value = {editItem?.last_name}
+                                                    onChange={(e) => handleInputChange('last_name', e.target.value)}
                                                 />
                                             </div>
                                         </div>
 
                                     </div>
                                     <div className="d-flex align-items-center justify-content-center gap-3">
-                                        <button
-                                            type="button"
-                                            className="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
-                                        >
-                                            Save
-                                        </button>
+                                    {loading ? (
+                                            <button className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8">Loading...</button>
+                                        ) : (
+                                            <button
+                                                type="button"
+                                                onClick={EditUser}
+                                                className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
+                                            >
+                                                Save
+                                            </button>
+                                        )}
                                     </div>
                                 </form>
                             </div>
@@ -274,6 +235,7 @@ const ViewProfileLayer = () => {
                                             className="form-control radius-8"
                                             id="your-password"
                                             placeholder="Enter New Password*"
+                                            onChange={(e) => handlePasswordChange("new_password", e.target.value)}
                                         />
                                         <span
                                             className={`toggle-password ${passwordVisible ? "ri-eye-off-line" : "ri-eye-line"} cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light`}
@@ -292,28 +254,29 @@ const ViewProfileLayer = () => {
                                             className="form-control radius-8"
                                             id="confirm-password"
                                             placeholder="Confirm Password*"
+                                            onChange={(e) => handlePasswordChange("confirm_password", e.target.value)}
                                         />
                                         <span
                                             className={`toggle-password ${confirmPasswordVisible ? "ri-eye-off-line" : "ri-eye-line"} cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light`}
-                                            onClick={toggleConfirmPasswordVisibility}
-                                        ></span>
+                                            onClick={toggleConfirmPasswordVisibility}                                        ></span>
                                     </div>
                                 </div>
                                 
 
                                 <div className="d-flex align-items-center justify-content-center gap-3">
-                                        <button
-                                            type="button"
-                                            className="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
-                                        >
-                                            Save
-                                        </button>
+                                <div className="d-flex align-items-center justify-content-center gap-3">
+                                        {passwordLoading ? (
+                                            <button className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8">Loading...</button>
+                                        ) : (
+                                            <button
+                                                type="button"
+                                                onClick={ChangeUserPassword}
+                                                className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
+                                            >
+                                                Change Password
+                                            </button>
+                                        )}
+                                    </div>
                                     </div>
 
                             </div>
@@ -322,6 +285,48 @@ const ViewProfileLayer = () => {
 
 
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-4">
+                <div className="user-grid-card position-relative border radius-16 overflow-hidden bg-base ">
+                    
+                    <div className="pb-24 ms-16 mb-24 me-16 mt-2">
+                        <div className="text-center border border-top-0 border-start-0 border-end-0">
+                            <h6 className="mb-0 mt-16">{userData?.first_name} {userData?.last_name}</h6>
+                            <span className="text-secondary-light mb-16">{userData?.email}</span>
+                        </div>
+                        <div className="mt-24">
+                            <h6 className="text-xl mb-16">Personal Info</h6>
+                            <ul>
+                                <li className="d-flex align-items-center gap-1 mb-12">
+                                    <span className="w-30 text-md fw-semibold text-primary-light">
+                                        Full Name
+                                    </span>
+                                    <span className="w-70 text-secondary-light fw-medium">
+                                        : {userData?.first_name} {userData?.last_name}
+                                    </span>
+                                </li>
+                                <li className="d-flex align-items-center gap-1 mb-12">
+                                    <span className="w-30 text-md fw-semibold text-primary-light">
+                                        {" "}
+                                        Email
+                                    </span>
+                                    <span className="w-70 text-secondary-light fw-medium">
+                                        : {userData?.email}
+                                    </span>
+                                </li>
+                                <li className="d-flex align-items-center gap-1 mb-12">
+                                    <span className="w-30 text-md fw-semibold text-primary-light">
+                                        {" "}
+                                       Username
+                                    </span>
+                                    <span className="w-70 text-secondary-light fw-medium">
+                                        : {userData?.username}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

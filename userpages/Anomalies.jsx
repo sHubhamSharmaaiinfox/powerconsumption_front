@@ -7,7 +7,7 @@ const Anomalies = () => {
   return (
     <>
       <MasterLayout>
-        <Breadcrumb title="Basic Table" />
+     
 
         <Anomaliesayer />
 

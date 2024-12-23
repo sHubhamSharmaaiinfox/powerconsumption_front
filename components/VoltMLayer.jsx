@@ -49,7 +49,7 @@ const VoltMLayer = () => {
                 <table className="table bordered-table mb-0" id="dataTable">
                     <thead>
                         <tr>
-                            <th>S.R</th>
+                            
                             <th>Meter Id</th>
                             <th>Total Power Today</th>
                             <th>Total Power This Month</th>
@@ -62,10 +62,7 @@ const VoltMLayer = () => {
                     <tbody>
                         {data?.map((item, index) => (
                             <tr key={index}>
-                                <td>
-                                    <input className="form-check-input" type="checkbox" />
-                                    <label>{index + 1}</label>
-                                </td>
+                                
                                 <td>
                                     <Link to="#" className="text-primary-600">
                                         Meter {item?.meter_id}
