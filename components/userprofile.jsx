@@ -5,6 +5,7 @@ import $ from 'jquery';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useSearchParams } from 'react-router-dom';
 import 'datatables.net-dt/js/dataTables.dataTables.js';
+import Avatar from 'react-avatar';
 import moment from 'moment';
 const UserProfile = () => {
     const [data, setData] = useState([]);
@@ -25,18 +26,18 @@ const UserProfile = () => {
             const data = { id }; 
 
             setLoading(true);
-            const res = await apiPost("admin/getuserdetail", data); // API call to fetch user details
+            const res = await apiPost("admin/userdetail", data); // API call to fetch user details
             console.log("userdata",res);
 
             if (res?.data?.status === true) {
-                setUserData(res?.data?.data); // Store user details in state
+                setUserData(res?.data?.data);   
             } else {
-                console.log(res?.data?.message); // Handle error messages
+                console.log(res?.data?.message); 
             }
         } catch (e) {
-            console.log(e); // Log any errors
+            console.log(e); 
         } finally {
-            setLoading(false); // Set loading to false after API call completes
+            setLoading(false); 
         }
     };
 
@@ -46,20 +47,16 @@ const UserProfile = () => {
             const data = { id }
 
             setLoading(true);
-            const res = await apiPost("admin/get-meters", data); // API call to get data
+            const res = await apiPost("admin/get-meters", data); 
             console.log("meter data",res);
 
             if (res?.data?.status === true) {
                 console.log(res?.data?.data)
                 const data = res?.data?.data;
                 setMetersData(data);
-
-                // Dynamically set table headers based on API response
                 if (data.length > 0) {
-                    setTableHeaders(Object.keys(data[0])); // Assuming data[0] contains the object with keys
+                    setTableHeaders(Object.keys(data[0])); 
                 }
-
-                // Destroy existing DataTable instance if it exists
                 if ($.fn.DataTable.isDataTable("#dataTable")) {
                     $("#dataTable").DataTable().destroy();
                 }
@@ -96,6 +93,7 @@ const UserProfile = () => {
     
         }
 
+    
     useEffect(() => {
         getData();
         getUserDetails(); 
@@ -110,18 +108,10 @@ const UserProfile = () => {
         <div className="row gy-4">
             <div className="col-lg-3">
                 <div className="user-grid-card position-relative border radius-16 overflow-hidden bg-base">
-                    <img
-                        src="assets/images/user-back.jpg"
-                        alt=""
-                        className="w-100 object-fit-cover h-img"
-                    />
-                    <div className="pb-24 ms-16 mb-24 me-16  mt--100">
+                   
+                    <div className="pb-24 ms-16 mb-24 me-16 mt-3">
                         <div className="text-center border border-top-0 border-start-0 border-end-0">
-                            <img
-                                src="assets/images/user-image-1.jpg"
-                                alt=""
-                                className="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover"
-                            />
+                        <Avatar name={`${userData?.userdata?.first_name || ""} ${userData?.userdata?.last_name || ""}`} />
                             <h6 className="mb-0 mt-16">{userData?.userdata?.username}</h6>
                             <span className="text-secondary-light mb-16">{userData?.userdata?.email}</span>
                         </div>
@@ -180,7 +170,7 @@ const UserProfile = () => {
                 </div>
             </div>
             <div className="col-lg-9">
-                <div className="card h-100">
+                <div className="card">
                     <div className="card-body p-24 my-card-r">
                         <h6>User Meter Data</h6>
                         {data ?

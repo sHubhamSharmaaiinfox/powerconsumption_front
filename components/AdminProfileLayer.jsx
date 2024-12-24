@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React, { useState, useEffect } from 'react';
 import { apiGet, apiPost } from "../services/client";
+import Avatar from 'react-avatar';
 
 const AdminProfileLayer = () => {
     const [imagePreview, setImagePreview] = useState('assets/images/user-grid/user-grid-img13.png');
@@ -151,8 +152,8 @@ const AdminProfileLayer = () => {
                         <div className="tab-content" id="pills-tabContent">
                             {/* Edit Profile Section */}
                             <div className="tab-pane fade show active" id="pills-edit-profile" role="tabpanel" aria-labelledby="pills-edit-profile-tab" tabIndex={0}>
-                                <h6 className="text-md text-primary-light mb-16">Profile Image</h6>
-                                <div className="mb-24 mt-16">
+                                {/* <h6 className="text-md text-primary-light mb-16">Profile Image</h6> */}
+                                {/* <div className="mb-24 mt-16">
                                     <div className="avatar-upload">
                                         <div className="avatar-edit position-absolute bottom-0 end-0 me-24 mt-16 z-1 cursor-pointer">
                                             <input
@@ -177,7 +178,7 @@ const AdminProfileLayer = () => {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <form>
                                     <div className="row">
                                         <div className="col-sm-6">
@@ -292,7 +293,8 @@ const AdminProfileLayer = () => {
                 {/* Admin Profile Card */}
                 <div className="user-grid-card position-relative border radius-16 overflow-hidden bg-base ">
                     <div className="pb-24 ms-16 mb-24 me-16 mt-2">
-                        <div className="text-center border border-top-0 border-start-0 border-end-0">
+                        <div className="text-center border border-top-0 border-start-0 border-end-0 mt-3">
+                        <Avatar name={`${adminData?.first_name || ""} ${adminData?.last_name || ""}`} />
                             <h6 className="mb-0 mt-16">{adminData?.first_name} {adminData?.last_name}</h6>
                             <span className="text-secondary-light mb-16">{adminData?.email}</span>
                         </div>

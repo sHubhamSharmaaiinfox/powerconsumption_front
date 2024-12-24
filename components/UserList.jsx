@@ -314,7 +314,6 @@ const UserLists = () => {
                             {data?.map((item, index) => (
                                 <tr key={index}>
                                     <td>
-                                        {/* <input className="form-check-input" type="checkbox" /> */}
                                         <label>{index + 1}</label>
                                     </td>
                                     <td>

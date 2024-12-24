@@ -106,7 +106,6 @@ const PendingRequestsLayers = () => {
                                 <th scope="col">Amount</th>
                                 <th scope="col">Comment</th>
                                 <th scope="col">Created At</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                                 <th scope="col">Cancel</th>
                             </tr>
@@ -148,21 +147,7 @@ const PendingRequestsLayers = () => {
                                     <td>{item?.amount}</td>
                                     <td>{item?.comment}</td>
                                     <td>{moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}</td>
-                                    <td>
-                                        {item?.status === "1" ? (
-                                            <span
-                                                className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white"
-                                            >
-                                                Completed
-                                            </span>
-                                        ) : (
-                                            <span
-                                                className="badge text-sm fw-semibold text-warning-600 bg-warning-100 px-20 py-9 radius-4 text-white"
-                                            >
-                                                Pending
-                                            </span>
-                                        )}
-                                    </td>
+                                 
                                     <td>
                                         <span
                                             className="badge text-sm fw-semibold text-success-600 bg-success-100 px-20 py-9 radius-4 text-white"

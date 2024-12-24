@@ -107,12 +107,7 @@ const MeterLayers = () => {
                                 >
                                     <Icon icon="iconamoon:eye-light" />
                                 </Link>
-                                <Link
-                                    to="#"
-                                    className="w-32-px h-32-px me-8 bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center"
-                                >
-                                    <Icon icon="mingcute:delete-2-line" />
-                                </Link>
+                                
                             </td>
                         </tr>
 

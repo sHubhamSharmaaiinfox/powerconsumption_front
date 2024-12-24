@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables.js';
 import { ToastContainer, toast } from 'react-toastify';
+import moment from "moment";    
 
 const AddMetersUser = () => {
 
@@ -261,7 +262,7 @@ const AddMetersUser = () => {
                                             </td>
                                             <td>{item?.name}</td>
                                             <td>{item?.location}</td>
-                                            <td>{item?.created_at}</td>
+                                            <td> {moment(item?.created_at).format("MMMM Do YYYY, h:mm:ss A")}</td>
                                             <td>{item?.token?.slice(0, 10)}********
                                                 <button onClick={() => handleCopy(item?.token)} style={{ marginLeft: "8px", cursor: "pointer", border: "none", background: "transparent" }}>
                                                     <Icon icon="solar:copy-broken" className='menu-icon' /> {/* Copy icon */}

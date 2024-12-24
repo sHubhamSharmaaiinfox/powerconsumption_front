@@ -65,7 +65,7 @@ const SignInLayer = () => {
                             Welcome back! please enter your detail
                         </p>
                     </div>
-                    <form action="#">
+                   
                         <div className="icon-field mb-16">
                             <span className="icon top-50 translate-middle-y">
                                 <Icon icon="mage:email" />
@@ -88,6 +88,8 @@ const SignInLayer = () => {
                                     id="your-password"
                                     placeholder="Password"
                                     onChange={(e) => setPassword(e.target.value)}
+                                    pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                    title="Password must be at least 8 characters long, contain at least one uppercase letter and one number."
                                 />
                             </div>
                             <span
@@ -131,40 +133,7 @@ onClick={LoginUser}
 Sign In
 </button>
 }
-                        {/* <div className="mt-32 center-border-horizontal text-center">
-                            <span className="bg-base z-1 px-4">Or sign in with</span>
-                        </div> */}
-                        {/* <div className="mt-32 d-flex align-items-center gap-3">
-                            <button
-                                type="button"
-                                className="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50"
-                            >
-                                <Icon
-                                    icon="ic:baseline-facebook"
-                                    className="text-primary-600 text-xl line-height-1"
-                                />
-                                Google
-                            </button>
-                            <button
-                                type="button"
-                                className="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50"
-                            >
-                                <Icon
-                                    icon="logos:google-icon"
-                                    className="text-primary-600 text-xl line-height-1"
-                                />
-                                Google
-                            </button>
-                        </div> */}
-                        {/* <div className="mt-32 text-center text-sm">
-                            <p className="mb-0">
-                                Don’t have an account?{" "}
-                                <Link to="/sign-up" className="text-primary-600 fw-semibold">
-                                    Sign Up
-                                </Link>
-                            </p>
-                        </div> */}
-                    </form>
+                 
                 </div>
             </div>
         </section>

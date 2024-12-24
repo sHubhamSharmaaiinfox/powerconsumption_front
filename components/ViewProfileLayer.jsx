@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React, { useState,useEffect } from 'react';
 import { apiGet, apiPost } from "../services/client";
+import Avatar from 'react-avatar';
 
 const ViewProfileLayer = () => {
      const [passwordVisible, setPasswordVisible] = useState(false);
@@ -293,7 +294,8 @@ const ViewProfileLayer = () => {
                 <div className="user-grid-card position-relative border radius-16 overflow-hidden bg-base ">
                     
                     <div className="pb-24 ms-16 mb-24 me-16 mt-2">
-                        <div className="text-center border border-top-0 border-start-0 border-end-0">
+                        <div className="text-center border border-top-0 border-start-0 border-end-0 mt-3">
+                        <Avatar name={`${userData?.first_name || ""} ${userData?.last_name || ""}`}/>
                             <h6 className="mb-0 mt-16">{userData?.first_name} {userData?.last_name}</h6>
                             <span className="text-secondary-light mb-16">{userData?.email}</span>
                         </div>
