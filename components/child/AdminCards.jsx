@@ -139,7 +139,7 @@ const AdminCards = () => {
                 </div>
                 {/* card end */}
             </div>
-
+{/* 
             <div className="col">
                 <div className="card shadow-none border bg-gradient-start-2 ">
                     <div className="card-body p-20">
@@ -158,8 +158,8 @@ const AdminCards = () => {
                         
                     </div>
                 </div>
-                {/* card end */}
-            </div>
+
+            </div> */}
 
 
             <div className="col">
