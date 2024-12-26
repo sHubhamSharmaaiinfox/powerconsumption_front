@@ -36,7 +36,7 @@ const TopPerformerOne = () => {
                     <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between">
                         <h6 className="mb-2 fw-bold text-lg mb-0">Alerts</h6>
                         <Link
-                            to="#"
+                            to="/anomalies"
                             className="text-primary-600 hover-text-primary d-flex align-items-center gap-1"
                         >
                             View All
