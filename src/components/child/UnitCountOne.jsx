@@ -83,7 +83,7 @@ const UnitCountOne = () => {
                                 <p className="fw-medium text-primary-light mb-1">
                                     Total Active Power (KWH)
                                 </p>
-                                <h6 className="mb-0">{overallConsumption?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{overallConsumption}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-purple rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -104,7 +104,7 @@ const UnitCountOne = () => {
                                 <p className="fw-medium text-primary-light mb-1">
                                     Today's kVah
                                 </p>
-                                <h6 className="mb-0">{todays_power_consumed?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{todays_power_consumed}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-info rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -124,7 +124,7 @@ const UnitCountOne = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">This Month Active Power</p>
-                                <h6 className="mb-0">{monthly_power_consumed?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{monthly_power_consumed}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -145,7 +145,7 @@ const UnitCountOne = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Peak KW Today</p>
-                                <h6 className="mb-0">{peak_power_today?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{peak_power_today}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -165,7 +165,7 @@ const UnitCountOne = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Peak KW This month</p>
-                                <h6 className="mb-0">{peak_power_this_month?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{peak_power_this_month}</h6>
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
@@ -185,7 +185,7 @@ const UnitCountOne = () => {
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Peak KW Altime</p>
-                                <h6 className="mb-0">{all_time_peak_power?.toFixed(4)}</h6>
+                                <h6 className="mb-0">{all_time_peak_power}</h6>
                             </div>
 
                             <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">

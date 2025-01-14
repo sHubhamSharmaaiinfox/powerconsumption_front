@@ -14052,7 +14052,6 @@ span.toggle-password {
     width: 300px;
     overflow: overlay;
     margin: 10px;
-    height: 400px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
   }
 }
@@ -14063,4 +14062,38 @@ span.toggle-password {
 }
 .card-dash p{
   margin: 0px !important;
+}
+.card-inner h6 {
+  font-size: 15px !important;
+}
+@media(max-width:500px){  
+.card-dash .gap-3{
+  flex-direction: column;
+}
+.card-dash .card{
+  max-width: 100% !important;
+  justify-content: center;
+}
+.apexcharts-inner {
+  transform: translate(0);
+}
+svg#SvgjsSvg1480 {
+  width: 100% !important;
+}
+.apexcharts-canvas {
+  width: 100% !important;
+}
+
+}
+.apexcharts-canvas svg{
+  width: 100% !important;
+}
+.card-inner b{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-inner p{
+  text-align: center;
 }
