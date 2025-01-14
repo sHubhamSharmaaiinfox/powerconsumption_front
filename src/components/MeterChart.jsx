@@ -11,79 +11,18 @@ import { useState, useEffect } from "react";
 const MeterChart = () => {
 
 
-    const defaultLineChartOptions = {
-        chart: {
-          type: "area",
-          toolbar: {
-            show: true,
-          },
-        },
-        xaxis: {
-          categories: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ], // Ensure these match your months
-        },
-        yaxis: {
-          labels: {
-            formatter: (value) => `${value.toFixed(2)}`, // Format with two decimal points
-            style: {
-              fontSize: "12px", // Adjust font size for better readability
-              colors: "#000", // Ensure the label is visible
-            },
-          },
-          tickAmount: 6, // Controls the number of ticks on the Y-axis
-        },
-        grid: {
-          padding: {
-            left: 10, // Adjust padding to prevent cutoff
-            right: 10,
-          },
-        },
-        tooltip: {
-          y: {
-            formatter: (value) => `${value.toFixed(2)}`, // Format values in the tooltip as well
-          },
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        fill: {
-          opacity: 0.4,
-        },
-        responsive: [
-          {
-            breakpoint: 600,
-            options: {
-              chart: {
-                height: 300,
-              },
-              yaxis: {
-                labels: {
-                  style: {
-                    fontSize: "10px",
-                  },
-                },
-              },
-            },
-          },
-        ],
-      };
 
-      let userOverviewDonutChartSeries = [400, 500, 500]
+      const [searchParams] = useSearchParams();
+      const id = searchParams.get("id");
+
+  
+      const [data,setData] = useState([]);
+
+
+      let userOverviewDonutChartSeries = data ? data : [0,0,0]
       let userOverviewDonutChartOptions = {
   
-          colors: ['#FF9F29', '#487FFF', '#E4F1FF'],
+          colors: ['#FF9F29', '#487FFF', '#16A34A'],
           labels: ['R', 'Y', 'B'],
           legend: {
               show: false
@@ -129,17 +68,13 @@ const MeterChart = () => {
 
 
 
-    const [searchParams] = useSearchParams();
-    const id = searchParams.get("id");
-
-    
-    const [data,setData] = useState([]);
+   
 
     const getData = async () =>{
 
         try{
             const data = {id}
-            const res = await apiPost('userapp/meter-chart',data);
+            const res = await apiPost('userapp/kw-chart',data);
             if (res?.data?.status == true){
            
                 setData(res?.data?.data);
@@ -163,12 +98,12 @@ const MeterChart = () => {
                   <div className="card-body p-24 d-flex flex-column justify-content-between gap-8">
                       <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
                           <h6 className="mb-2 fw-bold text-lg mb-0">KW</h6>
-                          <select className="form-select form-select-sm w-auto bg-base border text-secondary-light" defaultValue="Yearly">
+                          {/* <select className="form-select form-select-sm w-auto bg-base border text-secondary-light" defaultValue="Yearly">
                               <option value="Yearly">Yearly</option>
                               <option value="Monthly">Monthly</option>
                               <option value="Weekly">Weekly</option>
                               <option value="Today">Today</option>
-                          </select>
+                          </select> */}
                       </div>
                       <div
                           id="userOverviewDonutChart"
@@ -184,16 +119,7 @@ const MeterChart = () => {
                                       R
                                   </span>
                               </div>
-                              <span className="text-primary-light fw-bold">875</span>
-                          </li>
-                          <li className="d-flex flex-column gap-8">
-                              <div className="d-flex align-items-center gap-2">
-                                  <span className="w-12-px h-12-px rounded-circle bg-success-600" />
-                                  <span className="text-secondary-light text-sm fw-semibold">
-                                      B
-                                  </span>
-                              </div>
-                              <span className="text-primary-light fw-bold">450</span>
+                              <span className="text-primary-light fw-bold">{data ? data[0] : 0}</span>
                           </li>
                           <li className="d-flex flex-column gap-8">
                               <div className="d-flex align-items-center gap-2">
@@ -202,7 +128,16 @@ const MeterChart = () => {
                                       Y
                                   </span>
                               </div>
-                              <span className="text-primary-light fw-bold">4,305</span>
+                              <span className="text-primary-light fw-bold">{data ? data[1] : 0}</span>
+                          </li>
+                          <li className="d-flex flex-column gap-8">
+                              <div className="d-flex align-items-center gap-2">
+                                  <span className="w-12-px h-12-px rounded-circle bg-success-600" />
+                                  <span className="text-secondary-light text-sm fw-semibold">
+                                      B
+                                  </span>
+                              </div>
+                              <span className="text-primary-light fw-bold">{data ? data[2] : 0}</span>
                           </li>
                       </ul>
                   </div>

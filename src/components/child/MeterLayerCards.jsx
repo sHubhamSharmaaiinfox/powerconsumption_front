@@ -5,60 +5,60 @@ import { useState, useEffect } from "react";
 import Loading from '../Loading';
 import useReactApexChart from '../../hook/useReactApexChart';
 import ReactApexChart from 'react-apexcharts';
-
+import { useSearchParams } from 'react-router-dom';
 
 
 const MeterLayerCards = () => {
 
     
     const [loading, setLoading] = useState(false);
+    const [kwh,setKwh] = useState(null);
+    const  [kvah,setKvah] = useState(null);
+    const [kvarh,setKvarh] = useState(null);
+    const [chartData,setChartData] = useState(null);
+    const [searchParams] = useSearchParams();
+    const id = searchParams.get('id');
 
-    // const getMeterData = async () =>{
-    //     setLoading(true);
+    const getMeterData = async () =>{
+        setLoading(true);
+        const data = {id}
 
-    //     try{
+        try{
 
-    //         const res = await apiGet('userapp/meters-data');
+            const res = await apiPost('userapp/overall-power',data);
            
-    //         if (res?.data?.status == true){
-    //             console.log(res);
-    //             setTotalMeters(res?.data?.Total_meters);
-    //             setOverallConsumption(res?.data?.overall_consumption);
-    //             setMaxDropdown(res?.data?.max_dropdown);
-    //             setPowerGrowthRate(res?.data?.power_growth_rate);
-    //             setTodaysPowerConsumed(res?.data?.todays_power_consumed);
-    //             setMonthlyPowerConsumed(res?.data?.monthly_power_consumed);
-    //             setPeakPowerToday(res?.data?.peak_power_today);
-    //             setPeakPowerThisMonth(res?.data?.peak_power_this_month);
-    //             setAllTimePeakPower(res?.data?.all_time_peak_power);
-    //         }
-    //         else{
-    //             console.log(res?.data?.message)
-    //         }
+            if (res?.data?.status == true){
+                setKwh(res?.data?.kwh)
+                setKvah(res?.data?.kvah)
+                setKvarh(res?.data?.kvarh)
+                setChartData(res?.data?.chart_data)
+    
+                
+            }
+            else{
+                console.log(res?.data?.message)
+            }
 
 
-    //     }catch(e){
-    //         console.log(e);
-    //     }finally{
-    //         setLoading(false);
-    //     }
-    // }
+        }catch(e){
+            console.log(e);
+        }finally{
+            setLoading(false);
+        }
+    }
 
 
     
 
     useEffect(() => {
-        // getMeterData();
+        getMeterData();
 
       }, []);
        let createChartSix = (color1, color2) => {
       
               let series = [{
                   name: 'series1',
-                  data: [48, 35, 55, 32, 48, 30, 55, 50, 57]
-              }, {
-                  name: 'series2',
-                  data: [12, 20, 15, 26, 22, 60, 40, 48, 25]
+                  data: chartData ? chartData : [0,0,0,0,0,0,0,0,0,0,0,0]
               }]
               let options = {
       
@@ -158,7 +158,7 @@ const MeterLayerCards = () => {
                   yaxis: {
                       labels: {
                           formatter: function (value) {
-                              return "$" + value + "k";
+                              return   value ;
                           },
                           style: {
                               fontSize: "14px"
@@ -194,8 +194,7 @@ const MeterLayerCards = () => {
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">15,000</h5>
-                                    
+                                      <h5 className="fw-semibold mb-0">{kvah}</h5>
                                   </div>
                               </div>
                           </div>
@@ -214,7 +213,7 @@ const MeterLayerCards = () => {
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">420</h5>
+                                      <h5 className="fw-semibold mb-0">{kwh}</h5>
                                  
                                   </div>
                               </div>
@@ -228,13 +227,13 @@ const MeterLayerCards = () => {
                                           </span>
                                           <div>
                                               <span className="mb-0 fw-medium text-secondary-light text-lg">
-                                                  KVAR
+                                                  KVARh
                                               </span>
                                           </div>
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">50,000</h5>
+                                      <h5 className="fw-semibold mb-0">{kvarh}</h5>
                                   </div>
                               </div>
                           </div>
@@ -243,21 +242,21 @@ const MeterLayerCards = () => {
                           <div className="card-body p-0">
                               <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between">
                                   <h6 className="mb-2 fw-bold text-lg">Active Power</h6>
-                                  <div className="">
+                                  {/* <div className="">
                                       <select className="form-select form-select-sm w-auto bg-base border text-secondary-light" defaultValue="Yearly">
                                           <option value="Yearly">Yearly</option>
                                           <option value="Monthly">Monthly</option>
                                           <option value="Weekly">Weekly</option>
                                           <option value="Today">Today</option>
                                       </select>
-                                  </div>
+                                  </div> */}
                               </div>
                               <ul className="d-flex flex-wrap align-items-center justify-content-center mt-3 gap-3">
                                   <li className="d-flex align-items-center gap-2">
                                       <span className="w-12-px h-12-px rounded-circle bg-primary-600" />
                                       <span className="text-secondary-light text-sm fw-semibold">
                                           Total Active Power:
-                                          <span className="text-primary-light fw-bold">350</span>
+                                          <span className="text-primary-light fw-bold">{kwh}</span>
                                       </span>
                                   </li>
                                   {/* <li className="d-flex align-items-center gap-2">

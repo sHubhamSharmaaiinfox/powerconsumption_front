@@ -14061,3 +14061,6 @@ span.toggle-password {
 .text-padd .text-secondary-light {
   padding-left: 10px;
 }
+.card-dash p{
+  margin: 0px !important;
+}
