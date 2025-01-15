@@ -53,7 +53,7 @@ const UnitCountOne = () => {
 
       }, []);
     return (
-        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 card-design">
             {loading && <Loading />}
             <div className="col">
                 <div className="card shadow-none border bg-gradient-start-1 h-100">
@@ -65,7 +65,7 @@ const UnitCountOne = () => {
                             </div>
                             <div className="w-50-px h-50-px bg-cyan rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="gridicons:multiple-users"
+                                   icon="token:meter"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>
@@ -87,7 +87,7 @@ const UnitCountOne = () => {
                             </div>
                             <div className="w-50-px h-50-px bg-purple rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="fa-solid:award"
+                                     icon="carbon:power"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>
@@ -108,7 +108,7 @@ const UnitCountOne = () => {
                             </div>
                             <div className="w-50-px h-50-px bg-info rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="fluent:people-20-filled"
+                                   icon="ic:baseline-moving"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>

@@ -4,7 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
 import { apiGet, apiPost } from "../services/client";
 import Avatar from "react-avatar";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 const MasterLayout = ({ children }) => {
   let [sidebarActive, seSidebarActive] = useState(false);
   let [mobileMenu, setMobileMenu] = useState(false);
@@ -12,7 +12,7 @@ const MasterLayout = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [alertdata, setAlertData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [message,setMessage] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const Logout = () => {
     localStorage.removeItem("token");
@@ -20,24 +20,24 @@ const MasterLayout = ({ children }) => {
   };
 
 
-      const AddFeedBack = async () => {
-          if (! message){
-            toast.error("Enter Message!")
-            return false
-          }
-          const data = { message }   
-          try {
-              const res = await apiPost("userapp/add-feedback", data);
-              if (res?.data?.status == true) {
-                 toast.success("success")
-              } else {
-                  console.log(res);
-              }
-          } catch (e) {
-              console.log(e);
-          }
-  
+  const AddFeedBack = async () => {
+    if (!message) {
+      toast.error("Enter Message!")
+      return false
+    }
+    const data = { message }
+    try {
+      const res = await apiPost("userapp/add-feedback", data);
+      if (res?.data?.status == true) {
+        toast.success("success")
+      } else {
+        console.log(res);
       }
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
 
 
   // Open Modal
@@ -162,17 +162,17 @@ const MasterLayout = ({ children }) => {
         <div>
           <Link to="/" className="sidebar-logo">
             <img
-              src="assets/images/enerygy.png"
+              src="assets/images/ems-logo.png"
               alt="site logo"
               className="light-logo"
             />
             <img
-              src="assets/images/energy-dark.png"
+              src="assets/images/ems-logo.png"
               alt="site logo"
               className="dark-logo"
             />
             <img
-              src="assets/images/favicon-1.png"
+              src="assets/images/power-favicon.png"
               alt="site logo"
               className="logo-icon"
             />
@@ -238,7 +238,7 @@ const MasterLayout = ({ children }) => {
                 <span>Reports</span>
               </Link>
               <ul className="sidebar-submenu">
-               
+
                 <li>
                   <NavLink to="/meter-list" className={(navData) =>
                     navData.isActive ? "active-page" : ""
@@ -247,7 +247,7 @@ const MasterLayout = ({ children }) => {
                     Meter List
                   </NavLink>
                 </li>
-            
+
               </ul>
             </li>
 
@@ -311,35 +311,35 @@ const MasterLayout = ({ children }) => {
                       </span>
                     </div>
                     <div className="max-h-400-px overflow-y-auto scroll-sm pe-4">
-                    { alertdata?.map((item,index)=>(
+                      {alertdata?.map((item, index) => (
 
-                      <Link
-                        to="/anomalies"
-                        className="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between"
-                      >
-                        <div className="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
-                          <span className="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                            <Icon
-                              icon="bitcoin-icons:verify-outline"
-                              className="icon text-xxl"
-                            />
-                          </span>
-              <div>
-                            <h6 className="text-md fw-semibold mb-4">
-                              {item?.alert_name}
-                            </h6>
-                            <p className="mb-0 text-sm text-secondary-light text-w-200-px">
-                              {item?.description}
-                            </p>
+                        <Link
+                          to="/anomalies"
+                          className="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between"
+                        >
+                          <div className="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                            <span className="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                              <Icon
+                                icon="bitcoin-icons:verify-outline"
+                                className="icon text-xxl"
+                              />
+                            </span>
+                            <div>
+                              <h6 className="text-md fw-semibold mb-4">
+                                {item?.alert_name}
+                              </h6>
+                              <p className="mb-0 text-sm text-secondary-light text-w-200-px">
+                                {item?.description}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                        <span className="text-sm text-secondary-light flex-shrink-0">
-                          {alertdata && alertdata.length > 0 && (
-                            <span> {item?.created_at}</span>
-                          )}
-                        </span>
-                      </Link>
-                       ))}
+                          <span className="text-sm text-secondary-light flex-shrink-0">
+                            {alertdata && alertdata.length > 0 && (
+                              <span>{new Date(item?.created_at).toLocaleDateString()}</span>
+                            )}
+                          </span>
+                        </Link>
+                      ))}
                     </div>
 
                     <div className="text-center py-12 px-16">
@@ -408,14 +408,14 @@ const MasterLayout = ({ children }) => {
         <div className="dashboard-main-body">{children}</div>
 
 
-                        {/* Floating Feedback Button */}
+        {/* Floating Feedback Button */}
         <div
           className="floating-btn"
           style={{
             position: "fixed",
             bottom: "20px",
             right: "20px",
-            backgroundColor: "#007bff",
+            backgroundColor: "rgb(62 204 88)",
             color: "white",
             padding: "10px 15px",
             borderRadius: "50px",
@@ -430,45 +430,45 @@ const MasterLayout = ({ children }) => {
 
         {/* Feedback Modal */}
         {isModalOpen && (
-        <div
-          className="modal-overlay"
-          onClick={handleOutsideClick}
-          style={{
-            position: "fixed",
-            top: "0",
-            left: "0",
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "9999",
-          }}
-        >
           <div
-            className="card feedback-form"	
-            onClick={(e) => e.stopPropagation()} // Prevent click event from reaching the overlay
+            className="modal-overlay"
+            onClick={handleOutsideClick}
             style={{
-              borderRadius: "10px",
-              padding: "20px",
-              width: "500px",
-              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              position: "fixed",
+              top: "0",
+              left: "0",
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: "9999",
             }}
           >
-            <div className="modal-header" style={{ display: "flex", justifyContent: "center" }}>
-              <h5 className="modal-head text-center">Feedback Form</h5>
-            
-            </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Feedback submitted!");
-                closeModal();
+            <div
+              className="card feedback-form"
+              onClick={(e) => e.stopPropagation()} // Prevent click event from reaching the overlay
+              style={{
+                borderRadius: "10px",
+                padding: "20px",
+                width: "500px",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="modal-body">
-                {/* <div className="mb-3">
+              <div className="modal-header" style={{ display: "flex", justifyContent: "center" }}>
+                <h5 className="modal-head text-center">Feedback Form</h5>
+
+              </div>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  alert("Feedback submitted!");
+                  closeModal();
+                }}
+              >
+                <div className="modal-body">
+                  {/* <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name:</label>
                   <input
                     type="text"
@@ -490,33 +490,33 @@ const MasterLayout = ({ children }) => {
                     required
                   />
                 </div> */}
-                <div className="mb-3">
-                  <label htmlFor="message" className="form-label">Enter Message:</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    className="form-control"
-                    placeholder="Your Feedback"
-                    rows="4"
-                    required
-                    onChange={(e)=>setMessage(e.target.value)}
-                  ></textarea>
+                  <div className="mb-3">
+                    <label htmlFor="message" className="form-label">Enter Message:</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      className="form-control"
+                      placeholder="Your Feedback"
+                      rows="4"
+                      required
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                  </div>
                 </div>
-              </div>
-              <div className="modal-footer" style={{ textAlign: "right" }}>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={AddFeedBack}
-                  style={{ padding: "8px 20px", backgroundColor: "#007bff", borderColor: "#007bff" }}
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+                <div className="modal-footer" style={{ textAlign: "right" }}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={AddFeedBack}
+                    style={{ padding: "8px 20px", backgroundColor: "#3ECC58", borderColor: "#3ECC58" }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
         {/* Footer section */}
         <footer className="d-footer">

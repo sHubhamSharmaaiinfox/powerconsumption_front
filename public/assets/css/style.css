@@ -161,7 +161,7 @@
   --primary-300: #6BB1FF;
   --primary-400: #519FFF;
   --primary-500: #458EFF;
-  --primary-600: #487FFF;
+  --primary-600: #3ECC58;
   --primary-700: #486CEA;
   --primary-800: #4759D6;
   --primary-900: #4536B6;
@@ -269,7 +269,7 @@
   --pink-light-white: rgba(250, 54, 230, 0.25);
   --base: #fff;
   --brand: var(--primary-600);
-  --button-secondary: var(--primary-50);
+  --button-secondary:#3ecc582e  ;
   --black: var(--dark-2);
   --white: var(--base);
   --bg-color: var(--neutral-50);
@@ -2873,7 +2873,7 @@ th {
 }
 
 .bg-primary-light {
-  background-color: var(--primary-light) !important;
+  background-color: rgb(62 204 88 / 17%) !important;
 }
 
 .bg-yellow-light {
@@ -11605,12 +11605,11 @@ select option {
   left: 0;
   top: 0;
   border-top: 1px solid var(--primary-600);
-  background: linear-gradient(180deg, rgba(72, 127, 255, 0.12) 0%, rgba(72, 127, 255, 0.03) 100%);
+  background: linear-gradient(180deg, rgb(62 204 88 / 16%) 0%, rgb(62 204 88 / 0%) 100%);
   visibility: hidden;
   opacity: 0;
   transition: 0.2s linear;
 }
-
 /* Gradient Tab Css End */
 /* Focus Tab Css Start */
 .focus-tab .nav-link.active {
@@ -13991,9 +13990,9 @@ h2.scanh2 {
 .dt-button span img {
   width: 30%;
 }
-.dt-button span:hover{
-  color: #2D4AF1;
-  border: 1px solid #2D4AF1;
+.dt-button span:hover {
+  color: #3ecc58;
+  border: 1px solid #3ecc58;
   transform: scale(1.05);
 }
 .dt-search {
@@ -14096,4 +14095,13 @@ svg#SvgjsSvg1480 {
 }
 .card-inner p{
   text-align: center;
+}
+.card-design p {
+  font-size: 13px !important;
+} 
+.tab-pane button {
+  background: #3ecc58;
+}
+.tab-pane button:hover{
+  background: #3ecc58 !important;
 }

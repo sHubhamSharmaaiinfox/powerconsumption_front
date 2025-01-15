@@ -129,17 +129,17 @@ const SuperAdminMasterLayout = ({ children }) => {
                 <div>
                     <Link to="/" className="sidebar-logo">
                         <img
-                            src="assets/images/enerygy.png"
+                            src="assets/images/ems-logo.png"
                             alt="site logo"
                             className="light-logo"
                         />
                         <img
-                             src="assets/images/energy-dark.png"
+                             src="assets/images/ems-logo.png"
                             alt="site logo"
                             className="dark-logo"
                         />
                         <img
-                            src="assets/images/favicon-1.png"
+                            src="assets/images/power-favicon.png"
                             alt="site logo"
                             className="logo-icon"
                         />
