@@ -58,7 +58,7 @@ const LatestRegisteredOne = () => {
                             </li>
                         </ul>
                         <Link
-                            to="/volt-readings"
+                            
                             className="text-primary-600 hover-text-primary d-flex align-items-center gap-1"
                         >
                             View All

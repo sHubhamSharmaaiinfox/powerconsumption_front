@@ -332,6 +332,17 @@ const ViewProfileLayer = () => {
                                         : {userData?.username}
                                     </span>
                                 </li>
+
+
+                                <li className="d-flex align-items-center gap-1 mb-12">
+                                    <span className="w-30 text-md fw-semibold text-primary-light">
+                                        {" "}
+                                       Refferal Code
+                                    </span>
+                                    <span className="w-70 text-secondary-light fw-medium">
+                                        : {userData?.refferal_code}
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -11,9 +11,6 @@ const ViewProfilePage = () => {
       {/* MasterLayout */}
       <MasterLayout>
 
-        {/* Breadcrumb */}
-
-        {/* ViewProfileLayer */}
         <ViewProfileLayer />
 
       </MasterLayout>

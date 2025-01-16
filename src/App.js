@@ -39,6 +39,7 @@ import AdminPackageReports from "./superadminpages/AdminPackageReports";
 import EnergySyatem from "./adminpages/EnergySystem";
 import AdminView from "./superadminpages/AdminView";
 import BuyPackages from "./adminpages/BuyPackages";
+import Feedback from "./adminpages/Feedback";
 function App() {
   return (
     <BrowserRouter>
@@ -80,6 +81,7 @@ function App() {
         <Route exact path = '/inactiveuser-detail' element={<Protected_routes Component={ InactiveUsersList }/>} />
         <Route exact path = '/admin-view' element={<Protected_routes Component={ AdminView }/>} />
         <Route exact path = '/buy-package' element={<Protected_routes Component={ BuyPackages }/>} />
+        <Route exact path = '/feedbacks' element={<Protected_routes Component={ Feedback }/>} />
       </Routes>
     </BrowserRouter>
   );

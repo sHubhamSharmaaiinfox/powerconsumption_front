@@ -227,6 +227,16 @@ const AdminMasterLayer = ({ children }) => {
                             </Link>
                         </li>
 
+                        <li>
+                            <Link to="/feedbacks">
+                                <Icon
+                                    icon="fa-solid:award"
+                                    className="menu-icon"
+                                />
+                                <span>Feedback</span>
+                            </Link>
+                        </li>
+
 
 
                      
