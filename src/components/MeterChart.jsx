@@ -3,25 +3,19 @@ import useReactApexChart from '../hook/useReactApexChart'
 import ReactApexChart from 'react-apexcharts'
 import { useSearchParams } from "react-router-dom";
 import { apiGet, apiPost } from "../services/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
+import { WS_URL } from '../config';
 
 
 
 
 const MeterChart = () => {
-
-
-
       const [searchParams] = useSearchParams();
       const id = searchParams.get("id");
-
-  
-      const [data,setData] = useState([]);
-
-
+      const [data,setData] = useState(null);
       let userOverviewDonutChartSeries = data ? data : [0,0,0]
+      const socketRef = useRef(null);
       let userOverviewDonutChartOptions = {
-  
           colors: ['#FF9F29', '#487FFF', '#16A34A'],
           labels: ['R', 'Y', 'B'],
           legend: {
@@ -44,7 +38,9 @@ const MeterChart = () => {
                   right: 0,
                   bottom: 0,
                   left: 0
-              }
+              },animations: {
+                enabled: false // Disable animations
+            }
           },
           stroke: {
               width: 0,
@@ -89,6 +85,39 @@ const MeterChart = () => {
     }
     useEffect(() => {
         getData();
+        const wsUrl = WS_URL+`kw-data/${id}/`;
+                socketRef.current = new WebSocket(wsUrl);
+                socketRef.current.onopen = () => {
+                  console.log("WebSocket connection established");
+                }; 
+                socketRef.current.onmessage = (event) => {
+                    const parsedData = JSON.parse(event?.data);
+                    console.log("Received WebSocket data:", parsedData);
+            
+                    // Extract and transform data for the chart
+                    
+                    const chartData = Array.isArray(parsedData) && parsedData.length === 3 ? parsedData : [0,0,0];
+            
+                    setData(chartData);
+                
+                };
+                socketRef.current.onerror = (error) => {
+                  console.error("WebSocket error:", error);
+                };
+                socketRef.current.onclose = (event) => {
+                  console.log("WebSocket connection closed:", event.code, event.reason);
+                };
+            
+                
+                return () => {
+                  if (socketRef.current) {
+                    socketRef.current.close();
+                    console.log("WebSocket connection disconnected");
+                  }
+                };
+
+
+
       }, []);
 
  

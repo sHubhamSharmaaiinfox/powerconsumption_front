@@ -16,7 +16,7 @@ const PaymentForm =() =>{
         setLoading(true);
         try {
 
-            const res = await apiGet("admin/get-qr-detail"); // API call to fetch user details
+            const res = await apiGet("superadmin/get-qr-detail"); // API call to fetch user details
             
 
             if (res?.data?.status === true) {
@@ -39,7 +39,7 @@ const PaymentForm =() =>{
         try {
             setLoading(true);
             const data  = {upi_id,Merchant_name}
-            const res = await apiPost("admin/createupiid",data); // API call to fetch user details
+            const res = await apiPost("superadmin/createupiid",data); // API call to fetch user details
             //console.log("userdata",res);
 
             if (res?.data?.status === true) {

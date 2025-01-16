@@ -18,7 +18,7 @@ const PaymentCheckout = () => {
     const getSubscription = async () => {
         try {
             const data = { plan_id };
-            const res = await apiPost("userapp/getMembership", data);
+            const res = await apiPost("admin/getMembership", data);
             console.log(res);
             if (res?.data?.status === true) {
                 setData(res?.data?.data);
@@ -37,7 +37,7 @@ const PaymentCheckout = () => {
     const getQrData = async () => {
         try {
             const data = { plan_id };
-            const res = await apiPost("userapp/createqrcode", data);
+            const res = await apiPost("admin/createqrcode", data);
             console.log(res);
             if (res?.data?.status === true) {
                 setQrData(res?.data?.data);
@@ -63,7 +63,7 @@ const PaymentCheckout = () => {
                 return 0
             }
             const data = { plan_id ,imagepath,comment};
-            const res = await apiPost("userapp/paymentreceived", data);
+            const res = await apiPost("admin/paymentreceived", data);
             console.log(res);
             if (res?.data?.status === true) {
                 console.log(res?.data?.data);

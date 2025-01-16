@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 
 
-import AdminMasterLayer from '../masterLayout/AdminMasterLayer';
+
 import PendingRequestsLayers from '../components/PendingRequestsLayers';
+import SuperAdminDashLayers from '../components/SuperAdminDashLayers';
+import SuperAdminMasterLayout from '../masterLayout/SuperAdminMasterLayout';
 
 
 const PendingRequests = () => {
@@ -12,10 +14,10 @@ const PendingRequests = () => {
     return (
 
 
-        <AdminMasterLayer>
+        <SuperAdminMasterLayout>
             <PendingRequestsLayers />
 
-        </AdminMasterLayer>
+        </SuperAdminMasterLayout>
     );
 
 

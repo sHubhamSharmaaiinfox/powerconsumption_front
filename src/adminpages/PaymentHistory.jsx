@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react'
-
-
-
-import AdminMasterLayer from '../masterLayout/AdminMasterLayer';
-import InActiveUsersLayers from '../components/InactiveUserLayer';
 import PaymentHistoryLayers from '../components/PaymentHistoryLayers';
-
-
+import SuperAdminMasterLayout from '../masterLayout/SuperAdminMasterLayout';
 const PaymentHistory = () => {
-
-
     return (
-
-
-        <AdminMasterLayer>
+        <SuperAdminMasterLayout>
             <PaymentHistoryLayers />
-        </AdminMasterLayer>
+        </SuperAdminMasterLayout>
     );
 
 

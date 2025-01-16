@@ -64,7 +64,7 @@ function App() {
         <Route exact path = '/payment-history' element={<Protected_routes Component={ PaymentHistory }/>} />
         <Route exact path = '/user-data' element={<Protected_routes Component={ UserData }/>} />
         <Route exact path = '/meter-details' element={<Protected_routes Component={ meterData }/>} />
-        <Route exact path = '/Checkout-User' element={<Protected_routes Component={ CheckoutUser }/>} />
+        <Route exact path = '/Checkout-plan' element={<Protected_routes Component={ CheckoutUser }/>} />
         <Route exact path = '/payment-setting' element={<Protected_routes Component={ PaymentSettings }/>} />
         <Route exact path = '/add-meter' element={<Protected_routes Component={ AddMeter }/>} />
         <Route exact path = '/EMS' element={<Protected_routes Component={ EnergySyatem }/>} />

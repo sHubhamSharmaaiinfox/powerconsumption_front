@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import "datatables.net-dt/js/dataTables.dataTables.js";
 import { apiPost } from "../services/client";
 import { useSearchParams } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
+import { WS_URL } from "../config";
 
 
 const MeterDataTable = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [cardsData, setCardsData] = useState(null);
-   
-
-let activePowerSeries = [{
-    name: "Active Power",
-    data: cardsData?.data ? [cardsData?.data?.ActivePower_K_W?.R,cardsData?.data?.ActivePower_K_W?.Y,cardsData?.data?.ActivePower_K_W?.B] :[0, 0, 0]
-},{
-    name: "Apparent power",
-    data: cardsData?.data ? [cardsData?.data?.ApparentPower_KVA?.R, cardsData?.data?.ApparentPower_KVA?.Y, cardsData?.data?.ApparentPower_KVA?.B] : [0,0,0]
-}
-]
+    const socketRef = useRef(null);
+    let activePowerSeries = [{
+        name: "Active Power",
+        data: cardsData?.data ? [cardsData?.data?.ActivePower_K_W?.R,cardsData?.data?.ActivePower_K_W?.Y,cardsData?.data?.ActivePower_K_W?.B] :[0, 0, 0]
+    },{
+        name: "Apparent power",
+        data: cardsData?.data ? [cardsData?.data?.ApparentPower_KVA?.R, cardsData?.data?.ApparentPower_KVA?.Y, cardsData?.data?.ApparentPower_KVA?.B] : [0,0,0]
+    }
+    ]
 
 let voltageSeries = [{
     name: "Voltage P-N",
@@ -297,6 +297,30 @@ let thdVoltageSeries = [{
 
     useEffect(() => {
         getCardsData();
+        const wsUrl = WS_URL+`live-data/${id}/`;
+        socketRef.current = new WebSocket(wsUrl);
+        socketRef.current.onopen = () => {
+          console.log("WebSocket connection established");
+        }; 
+        socketRef.current.onmessage = (event) => {
+          const data = JSON.parse(event?.data);
+          setCardsData(data);
+        
+        };
+        socketRef.current.onerror = (error) => {
+          console.error("WebSocket error:", error);
+        };
+        socketRef.current.onclose = (event) => {
+          console.log("WebSocket connection closed:", event.code, event.reason);
+        };
+    
+        
+        return () => {
+          if (socketRef.current) {
+            socketRef.current.close();
+            console.log("WebSocket connection disconnected");
+          }
+        };
     }, []);
 
     return (

@@ -183,7 +183,7 @@ const MasterLayout = ({ children }) => {
             <li className="">
               <Link to="/">
                 <Icon icon="solar:home-smile-angle-outline" className="menu-icon" />
-                <span>Dashboard</span>
+                <span>Dashboard (User)</span>
               </Link>
 
             </li>

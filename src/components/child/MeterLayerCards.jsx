@@ -1,11 +1,12 @@
 import React from 'react'
 import { Icon } from '@iconify/react';
 import { apiGet, apiPost } from "../../services/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import Loading from '../Loading';
 import useReactApexChart from '../../hook/useReactApexChart';
 import ReactApexChart from 'react-apexcharts';
 import { useSearchParams } from 'react-router-dom';
+import { WS_URL } from '../../config';
 
 
 const MeterLayerCards = () => {
@@ -18,6 +19,8 @@ const MeterLayerCards = () => {
     const [chartData,setChartData] = useState(null);
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
+
+    const socketRef = useRef(null);
 
     const getMeterData = async () =>{
         setLoading(true);
@@ -52,6 +55,36 @@ const MeterLayerCards = () => {
 
     useEffect(() => {
         getMeterData();
+            const wsUrl = WS_URL+`card-data/${id}/`;
+                socketRef.current = new WebSocket(wsUrl);
+                socketRef.current.onopen = () => {
+                  console.log("WebSocket connection established");
+                }; 
+                socketRef.current.onmessage = (event) => {
+                  const data = JSON.parse(event?.data);
+                //   setCardsData(data);
+                console.log("cards data-------",data);
+                setKwh(data?.kwh)
+                setKvah(data?.kvah)
+                setKvarh(data?.kvarh)
+                setChartData(data?.chart_data)
+
+                
+                };
+                socketRef.current.onerror = (error) => {
+                  console.error("WebSocket error:", error);
+                };
+                socketRef.current.onclose = (event) => {
+                  console.log("WebSocket connection closed:", event.code, event.reason);
+                };
+            
+                
+                return () => {
+                  if (socketRef.current) {
+                    socketRef.current.close();
+                    console.log("WebSocket connection disconnected");
+                  }
+                };
 
       }, []);
        let createChartSix = (color1, color2) => {
@@ -194,7 +227,7 @@ const MeterLayerCards = () => {
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">{kvah}</h5>
+                                      <h5 className="fw-semibold mb-0">{kvah?.toFixed(2)}</h5>
                                   </div>
                               </div>
                           </div>
@@ -213,7 +246,7 @@ const MeterLayerCards = () => {
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">{kwh}</h5>
+                                      <h5 className="fw-semibold mb-0">{kwh?.toFixed(2)}</h5>
                                  
                                   </div>
                               </div>
@@ -233,7 +266,7 @@ const MeterLayerCards = () => {
                                       </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-8">
-                                      <h5 className="fw-semibold mb-0">{kvarh}</h5>
+                                      <h5 className="fw-semibold mb-0">{kvarh?.toFixed(2)}</h5>
                                   </div>
                               </div>
                           </div>

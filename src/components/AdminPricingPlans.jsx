@@ -148,7 +148,7 @@ const AdminPricingPlans = () => {
 
                                                     { parseFloat(userMembership?.amount) < parseFloat(item?.amount) ?     
                                                     
-                                                <Link to={`/Checkout-User?plan_id=${item?.id}`} className='w-100'>
+                                                <Link to={`/Checkout-plan?plan_id=${item?.id}`} className='w-100'>
                                                 <button
 
                                                     className="bg-primary-600 bg-hover-primary-700 text-white text-center border border-primary-600 text-sm btn-sm px-12 py-10 w-100 radius-8 mt-28"
@@ -160,7 +160,7 @@ const AdminPricingPlans = () => {
                                                 </button>
                                             </Link>:   
                                             
-                                                <Link to={`/Checkout-User?plan_id=${item?.id}`} className='w-100'>
+                                                <Link to={`/Checkout-plan?plan_id=${item?.id}`} className='w-100'>
                                                     <button
 
                                                         className="bg-primary-600 bg-hover-primary-700 text-white text-center border border-primary-600 text-sm btn-sm px-12 py-10 w-100 radius-8 mt-28"
@@ -248,7 +248,7 @@ const AdminPricingPlans = () => {
                                             </span>
                                         </li> */}
                                                 </ul>
-                                                <Link to={`/Checkout-User?plan_id=${item?.id}`} className='w-100'>
+                                                <Link to={`/Checkout-plan?plan_id=${item?.id}`} className='w-100'>
                                                     <button
 
                                                         className="bg-primary-600 bg-hover-primary-700 text-white text-center border border-primary-600 text-sm btn-sm px-12 py-10 w-100 radius-8 mt-28"

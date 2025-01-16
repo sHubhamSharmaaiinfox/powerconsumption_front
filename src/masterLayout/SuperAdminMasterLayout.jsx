@@ -8,8 +8,8 @@ const SuperAdminMasterLayout = ({ children }) => {
     let [sidebarActive, seSidebarActive] = useState(false);
     let [mobileMenu, setMobileMenu] = useState(false);
     const location = useLocation(); // Hook to get the current route
-     const [adminData, setAdminData] = useState(null);
-     const[notificationData, setnotificationData] = useState(null)
+    const [adminData, setAdminData] = useState(null);
+    const [notificationData, setnotificationData] = useState(null)
     const Logout = () => {
         localStorage.removeItem("token");
 
@@ -82,43 +82,43 @@ const SuperAdminMasterLayout = ({ children }) => {
     };
 
 
-  
-     const getAdminDetails = async () => {
-            try {
-                const res = await apiGet("superadmin/profile");
-                if (res?.data?.status === true) {
-                    setAdminData(res?.data?.data);
-                   
-                } else {
-                    console.error(res?.data?.message);
-                }
-            } catch (error) {
-                console.error(error);
+
+    const getAdminDetails = async () => {
+        try {
+            const res = await apiGet("superadmin/profile");
+            if (res?.data?.status === true) {
+                setAdminData(res?.data?.data);
+
+            } else {
+                console.error(res?.data?.message);
             }
-        };
-    
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-        const PaymentNotification = async () => {
-            try {
-                const res = await apiGet("superadmin/payment-notifications");
-                if (res?.data?.status === true) {
-                    console.log("payment-data",res);
-                    setnotificationData(res?.data?.data);
-                    
-                   
-                } else {
-                    console.error(res?.data?.message);
-                }
-            } catch (error) {
-                console.error(error);
+
+    const PaymentNotification = async () => {
+        try {
+            const res = await apiGet("superadmin/payment-notifications");
+            if (res?.data?.status === true) {
+                console.log("payment-data", res);
+                setnotificationData(res?.data?.data);
+
+
+            } else {
+                console.error(res?.data?.message);
             }
-        };
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
-        useEffect(() => {
-            PaymentNotification();
-            getAdminDetails();
-        }, []);   
+    useEffect(() => {
+        PaymentNotification();
+        getAdminDetails();
+    }, []);
     return (
         <section className={mobileMenu ? "overlay active" : "overlay "}>
             {/* sidebar */}
@@ -134,7 +134,7 @@ const SuperAdminMasterLayout = ({ children }) => {
                             className="light-logo"
                         />
                         <img
-                             src="assets/images/ems-logo.png"
+                            src="assets/images/ems-logo.png"
                             alt="site logo"
                             className="dark-logo"
                         />
@@ -216,7 +216,7 @@ const SuperAdminMasterLayout = ({ children }) => {
                                 </li>
                             </ul>
                         </li>
-                        {/* <li className="dropdown">
+                        <li className="dropdown">
                             <Link to="#">
                                 <Icon icon="proicons:dollar-circle" className="menu-icon" />
                                 <span>Payment Management</span>
@@ -237,7 +237,7 @@ const SuperAdminMasterLayout = ({ children }) => {
                                     </NavLink>
                                 </li>
                             </ul>
-                        </li> */}
+                        </li>
                         <li>
                             <Link to="/manage-subscription">
                                 <Icon
@@ -261,6 +261,24 @@ const SuperAdminMasterLayout = ({ children }) => {
                                         <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Admin Package
                                     </NavLink>
                                 </li>
+                            </ul>
+                        </li>
+
+                        <li className="dropdown">
+                            <Link to="#">
+                                <Icon icon="material-symbols-light:settings-b-roll-outline-rounded" className="menu-icon" />
+                                <span>Setting</span>
+                            </Link>
+                            <ul className="sidebar-submenu">
+                                <li>
+                                    <NavLink to="/payment-setting" className={(navData) =>
+                                        navData.isActive ? "active-page" : ""
+                                    }>
+                                        <i className="ri-circle-fill circle-icon text-primary-600 w-auto" /> Payment Setting
+                                    </NavLink>
+                                </li>
+
+
                             </ul>
                         </li>
                     </ul>
@@ -321,37 +339,37 @@ const SuperAdminMasterLayout = ({ children }) => {
                                                 </h6>
                                             </div>
                                             <span className="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">
-                                               {notificationData?.length}
+                                                {notificationData?.length}
                                             </span>
                                         </div>
                                         <div className="max-h-400-px overflow-y-auto scroll-sm pe-4">
 
-                                            {notificationData?.map((item,index)=>(
+                                            {notificationData?.map((item, index) => (
                                                 <Link
-                                                to="/pending-request"
-                                                className="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between"
-                                            >
-                                                <div className="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
-                                                    <span className="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                                                        <Icon
-                                                            icon="bitcoin-icons:verify-outline"
-                                                            className="icon text-xxl"
-                                                        />
-                                                    </span>
-                                                    <div>
-                                                        <h6 className="text-md fw-semibold mb-4">
-                                                        {item?.comment}
-                                                        </h6>
-                                                       
+                                                    to="/pending-request"
+                                                    className="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between"
+                                                >
+                                                    <div className="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                                        <span className="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                                            <Icon
+                                                                icon="bitcoin-icons:verify-outline"
+                                                                className="icon text-xxl"
+                                                            />
+                                                        </span>
+                                                        <div>
+                                                            <h6 className="text-md fw-semibold mb-4">
+                                                                {item?.comment}
+                                                            </h6>
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <span className="text-sm text-secondary-light flex-shrink-0">
-                                                    {item?.amount}
-                                                </span> 
-                                            </Link>
+                                                    <span className="text-sm text-secondary-light flex-shrink-0">
+                                                        {item?.amount}
+                                                    </span>
+                                                </Link>
 
                                             ))}
-                                            
+
                                         </div>
                                         <div className="text-center py-12 px-16">
                                             <Link
@@ -370,8 +388,8 @@ const SuperAdminMasterLayout = ({ children }) => {
                                         type="button"
                                         data-bs-toggle="dropdown"
                                     >
-                                          <Avatar name={`${adminData?.first_name || ""} ${adminData?.last_name || ""}`} 
-                                          className="w-40-px h-40-px object-fit-cover rounded-circle"/>
+                                        <Avatar name={`${adminData?.first_name || ""} ${adminData?.last_name || ""}`}
+                                            className="w-40-px h-40-px object-fit-cover rounded-circle" />
                                     </button>
                                     <div className="dropdown-menu to-top dropdown-menu-sm">
                                         <div className="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
@@ -394,9 +412,9 @@ const SuperAdminMasterLayout = ({ children }) => {
                                                     <Icon icon="solar:user-linear" className="icon text-xl" /> My
                                                     Profile
                                                 </Link>
-                                                
+
                                             </li>
-                                          
+
                                             <li>
                                                 <Link
                                                     className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"

@@ -16,7 +16,7 @@ const PendingRequestsLayers = () => {
         console.log(data);
 
         try {
-            const res = await apiPost("admin/update-payment", data);
+            const res = await apiPost("superadmin/update-payment", data);
 
             if (res?.data?.status === true) {
                 toast.success("Success")
@@ -34,7 +34,7 @@ const PendingRequestsLayers = () => {
         console.log(data);
 
         try {
-            const res = await apiPost("admin/update-payment", data);
+            const res = await apiPost("superadmin/update-payment", data);
 
             if (res?.data?.status === true) {
                 toast.success("Success")
@@ -50,7 +50,7 @@ const PendingRequestsLayers = () => {
     const getData = async () => {
         setPaymentLoading(true);
         try {
-            const res = await apiGet("admin/get-pending-payments");
+            const res = await apiGet("superadmin/get-pending-payments");
             console.log(res);
             if (res?.data?.status === true) {
                 setData(res?.data?.data);

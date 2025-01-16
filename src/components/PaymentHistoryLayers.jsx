@@ -21,7 +21,7 @@ const PaymentHistoryLayers = () => {
         setPaymentLoading(true);
         try {
 
-            const res = await apiGet("admin/get-payment ");
+            const res = await apiGet("superadmin/get-payment ");
             console.log(res);
             if (res?.data?.status === true) {
                 setData(res?.data?.data);
