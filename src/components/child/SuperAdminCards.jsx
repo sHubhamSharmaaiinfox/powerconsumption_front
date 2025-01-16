@@ -1,12 +1,13 @@
 import React, {useEffect, useState  } from 'react'
 import { Icon } from '@iconify/react';
 import { apiGet, apiPost } from "../../services/client";
-
+import Loading from '../Loading';
 
 const SuperAdminCards = () => {
     const [data, setData] = useState([]);
- 
+    const [loading,setLoading] = useState(false);
     const fetchData = async () => {
+        setLoading(true);
       try {
         const res = await apiGet("superadmin/dash-cards");
         if (res?.data?.status === true) {
@@ -17,6 +18,8 @@ const SuperAdminCards = () => {
         }
       } catch (e) {
         console.error("Error fetching user data:", e);
+      }finally{
+        setLoading(false)
       }
     };
     useEffect(() => {
@@ -24,9 +27,10 @@ const SuperAdminCards = () => {
     }, []);
   
     return (
-        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 card-design">
+           {loading? <Loading/> :<></>}
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-1 ">
+                <div className="card shadow-none border bg-gradient-start-1 card-1">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -47,7 +51,7 @@ const SuperAdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 ">
+                <div className="card shadow-none border bg-gradient-start-3 card-2">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -72,7 +76,7 @@ const SuperAdminCards = () => {
 
             
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 ">
+                <div className="card shadow-none border bg-gradient-start-4 card-3">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -94,7 +98,7 @@ const SuperAdminCards = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 ">
+                <div className="card shadow-none border bg-gradient-start-3 card-4">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -118,7 +122,7 @@ const SuperAdminCards = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 ">
+                <div className="card shadow-none border bg-gradient-start-3 card-5">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -142,7 +146,7 @@ const SuperAdminCards = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 ">
+                <div className="card shadow-none border bg-gradient-start-3 card-6">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -166,7 +170,7 @@ const SuperAdminCards = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 ">
+                <div className="card shadow-none border bg-gradient-start-2 card-7">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -189,7 +193,7 @@ const SuperAdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 ">
+                <div className="card shadow-none border bg-gradient-start-2 card-8">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -208,7 +212,7 @@ const SuperAdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5 ">
+                <div className="card shadow-none border bg-gradient-start-5 card-9">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>

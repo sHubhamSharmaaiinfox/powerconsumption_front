@@ -5,14 +5,15 @@ import { useSearchParams } from "react-router-dom";
 import { apiGet, apiPost } from "../services/client";
 import { useState, useEffect,useRef } from "react";
 import { WS_URL } from '../config';
-
+import Loading from './Loading';
 
 
 
 const MeterChart = () => {
       const [searchParams] = useSearchParams();
       const id = searchParams.get("id");
-      const [data,setData] = useState(null);
+     const [loading,setLoading] = useState(false);      
+     const [data,setData] = useState(null);
       let userOverviewDonutChartSeries = data ? data : [0,0,0]
       const socketRef = useRef(null);
       let userOverviewDonutChartOptions = {
@@ -67,7 +68,7 @@ const MeterChart = () => {
    
 
     const getData = async () =>{
-
+        setLoading(true);
         try{
             const data = {id}
             const res = await apiPost('userapp/kw-chart',data);
@@ -81,6 +82,8 @@ const MeterChart = () => {
             }
         }catch(e){
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     }
     useEffect(() => {
@@ -123,6 +126,7 @@ const MeterChart = () => {
  
       return (
           <div className="col-xxl-4 col-md-6">
+            {loading?<Loading/>:<></>}
               <div className="card h-100 radius-8 border-0">
                   <div className="card-body p-24 d-flex flex-column justify-content-between gap-8">
                       <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">

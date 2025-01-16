@@ -11,11 +11,13 @@ import 'datatables.net-buttons/js/buttons.html5';
 import 'datatables.net-buttons/js/buttons.print';
 import jszip from 'jszip';
 import pdfmake from 'pdfmake'
-
+import Loading from './Loading';
 
 const ActiveUsersListLayer = () => {
     const [data,setData] = useState([]); 
+    const [loading,setActiveLoading] = useState(false)
     const getData = async () => {
+        setActiveLoading(true);
         try {
             const res = await apiGet("superadmin/active-users");
             if (res?.data?.status === true) {
@@ -27,8 +29,25 @@ const ActiveUsersListLayer = () => {
                         pageLength: 10,
                         dom: 'Bfrtip', // Add the Buttons container
                         buttons: [
-                             'csv', 'excel', 'print' // Define the export options
-                        ]
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'active Users',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -36,6 +55,8 @@ const ActiveUsersListLayer = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setActiveLoading(false)
         }
     };
     useEffect(() => {
@@ -48,6 +69,7 @@ const ActiveUsersListLayer = () => {
     }, []);
     return (
         <div className="card basic-data-table">
+            {loading? <Loading/> : <></>}
             <div className="card-header d-flex justify-content-between">
                 Active Users
             </div>

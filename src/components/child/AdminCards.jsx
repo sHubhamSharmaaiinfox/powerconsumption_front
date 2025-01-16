@@ -34,10 +34,10 @@ const AdminCards = () => {
     }, []);
   
     return (
-        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+        <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 card-design">
             {cardLoading? <Loading/>: null}
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-1 ">
+                <div className="card shadow-none border bg-gradient-start-1 card-1">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -58,7 +58,7 @@ const AdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 ">
+                <div className="card shadow-none border bg-gradient-start-3 card-2">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -80,7 +80,7 @@ const AdminCards = () => {
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 ">
+                <div className="card shadow-none border bg-gradient-start-4 card-3">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -100,7 +100,7 @@ const AdminCards = () => {
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 ">
+                <div className="card shadow-none border bg-gradient-start-2 card-4">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -123,7 +123,7 @@ const AdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 ">
+                <div className="card shadow-none border bg-gradient-start-2 card-5">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -144,7 +144,7 @@ const AdminCards = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 ">
+                <div className="card shadow-none border bg-gradient-start-2 card-6">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>

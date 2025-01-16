@@ -56,7 +56,7 @@ const UnitCountOne = () => {
         <div className="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 card-design">
             {loading && <Loading />}
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-1 h-100">
+                <div className="card shadow-none border bg-gradient-start-1 h-100 card-1">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -76,7 +76,7 @@ const UnitCountOne = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-2 h-100">
+                <div className="card shadow-none border bg-gradient-start-2 h-100 card-2">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -97,7 +97,7 @@ const UnitCountOne = () => {
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-3 h-100">
+                <div className="card shadow-none border  h-100 card-3">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -119,7 +119,7 @@ const UnitCountOne = () => {
                 {/* card end */}
             </div>
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 h-100">
+                <div className="card shadow-none border h-100 bg-gradient-start-4 card-4">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -128,7 +128,7 @@ const UnitCountOne = () => {
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="solar:wallet-bold"
+                                   icon="zmdi:notifications-active"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>
@@ -140,7 +140,7 @@ const UnitCountOne = () => {
             </div>
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 h-100">
+                <div className="card shadow-none border bg-gradient-start-4 h-100 card-5">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -149,7 +149,7 @@ const UnitCountOne = () => {
                             </div>
                             <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="solar:wallet-bold"
+                                   icon="hugeicons:activity-01"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>
@@ -160,16 +160,16 @@ const UnitCountOne = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4 h-100">
+                <div className="card shadow-none border bg-gradient-start-4 h-100 card-6">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
                                 <p className="fw-medium text-primary-light mb-1">Peak KW This month</p>
                                 <h6 className="mb-0">{peak_power_this_month}</h6>
                             </div>
-                            <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                            <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="solar:wallet-bold"
+                                     icon="hugeicons:activity-01"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>
@@ -180,7 +180,7 @@ const UnitCountOne = () => {
 
 
             <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5 h-100">
+                <div className="card shadow-none border bg-gradient-start-5 h-100 card-7">
                     <div className="card-body p-20">
                         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                             <div>
@@ -188,9 +188,9 @@ const UnitCountOne = () => {
                                 <h6 className="mb-0">{all_time_peak_power}</h6>
                             </div>
 
-                            <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                            <div className="w-50-px h-50-px bg-yellow rounded-circle d-flex justify-content-center align-items-center">
                                 <Icon
-                                    icon="fa6-solid:file-invoice-dollar"
+                                    icon="hugeicons:activity-01"
                                     className="text-white text-2xl mb-0"
                                 />
                             </div>

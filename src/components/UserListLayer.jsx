@@ -14,7 +14,7 @@ import jszip from 'jszip';
 import pdfmake from 'pdfmake'
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-
+import Loading from './Loading';
 const UserListLayer = () => {
     const [data, setData] = useState([]);
     const [first_name, setFirstName] = useState(null);
@@ -27,6 +27,7 @@ const UserListLayer = () => {
     const [editItem, setEditItem] = useState(null); 
 
     const getData = async () => {
+        setLoading(true);
         try {
             const res = await apiGet("superadmin/get-user");
             if (res?.data?.status === true) {
@@ -41,8 +42,25 @@ const UserListLayer = () => {
                         pageLength: 10,
                         dom: 'Bfrtip', 
                         buttons: [
-                             'csv', 'excel' , 'print' // Define the export options
-                        ]
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'All Users',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -50,6 +68,8 @@ const UserListLayer = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     };
     const handleEditClick = (item) => {
@@ -114,6 +134,7 @@ const UserListLayer = () => {
     }, []);
     return (
         <div className="card basic-data-table">
+            {loading? <Loading/>:<></>}
             <ToastContainer />
             <div className="card-header d-flex justify-content-between">
                 <h5 className="card-title mb-0">All Users</h5>

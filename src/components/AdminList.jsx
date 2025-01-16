@@ -8,7 +8,7 @@ import moment from "moment";
 import {toast, ToastContainer } from 'react-toastify';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-
+import Loading from './Loading';
 const AdminList = () => {
     const [data, setData] = useState([]);
     const [first_name, setFirstName] = useState(null);
@@ -20,8 +20,8 @@ const AdminList = () => {
     const [loading, setLoading] = useState(false);
     const [editItem, setEditItem] = useState(null); 
     const CreateUser = async () => {
+        setLoading(true);
         try {
-            setLoading(true);
             const data = {
 
                 first_name: editItem?.first_name,
@@ -54,6 +54,7 @@ const AdminList = () => {
     }
 
     const getData = async () => {
+        setLoading(true);
         try {
             const res = await apiGet("superadmin/get-admin");
             if (res?.data?.status === true) {
@@ -71,6 +72,8 @@ const AdminList = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     };
     const handleEditClick = (item) => {
@@ -133,6 +136,7 @@ const AdminList = () => {
     }, []);
     return (
         <div className="card basic-data-table">
+            {loading? <Loading/>:<></>}
             <ToastContainer />
             <div className="card-header d-flex justify-content-between">
                 <h5 className="card-title mb-0">All Admin</h5>

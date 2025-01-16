@@ -7,7 +7,7 @@ import { apiGet, apiPost } from "../services/client";
 import moment from "moment";
 import { Cursor } from '@phosphor-icons/react';
 import { toast,ToastContainer } from 'react-toastify';
-
+import Loading from './Loading';
 
 import 'datatables.net-buttons/js/dataTables.buttons';
 import 'datatables.net-buttons/js/buttons.html5';
@@ -92,6 +92,7 @@ const SubscriptionLayers = () => {
 
 
     const getData = async () => {
+        setLoading(true);
         try {
             const res = await apiGet("superadmin/get-membership");
             if (res?.data?.status === true) {
@@ -104,8 +105,25 @@ const SubscriptionLayers = () => {
                         pageLength: 10,
                         dom: 'Bfrtip', 
                         buttons: [
-                             'csv', 'excel', 'print' 
-                        ]
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'Inactive Users',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -113,6 +131,8 @@ const SubscriptionLayers = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     };
     const handleEditClick = (item) => {
@@ -135,6 +155,7 @@ const SubscriptionLayers = () => {
 
     return (
         <div className="card basic-data-table">
+            {loading?<Loading/>:<></>}
              <ToastContainer/>
             <div className="card-header d-flex justify-content-between">
                 <h5 className="card-title mb-0">All Packages</h5>

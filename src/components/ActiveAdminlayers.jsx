@@ -7,11 +7,13 @@ import { apiGet,apiPost } from "../services/client";
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import moment from "moment";
-
+import Loading from './Loading';
 const ActiveAdminLayers = () => {
     const [data,setData] = useState([]); 
+    const [loading,setUserLoading] = useState(false)
 
     const getData = async () => {
+        setUserLoading(true)
         try {
             const res = await apiGet("superadmin/active-admin");
             if (res?.data?.status === true) {
@@ -29,6 +31,8 @@ const ActiveAdminLayers = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setUserLoading(false)
         }
     };
 
@@ -45,6 +49,7 @@ const ActiveAdminLayers = () => {
     }, []);
     return (
         <div className="card basic-data-table">
+            {loading? <Loading/> : <></>}
             <div className="card-header d-flex justify-content-between">
             </div>
             <div className="card-body">

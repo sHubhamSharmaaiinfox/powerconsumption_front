@@ -570,7 +570,7 @@ let thdVoltageSeries = [{
                     <h6 className="text-lg fw-semibold mb-0">Frequency vs power factor</h6>
                 </div>
                 <div className="card-body  d-flex justify-content-center align-items-center">
-                {createChartSix('#45B369', '#487fff')}
+                {createChartSix('#45B369', '#487fff',800,600)}
                 </div>
             </div>
         </div>

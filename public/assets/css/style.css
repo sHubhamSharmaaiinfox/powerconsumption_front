@@ -349,15 +349,25 @@
   box-sizing: border-box;
   border-style: solid;
   border-width: 0;
-  transition: all 0.3s;
+  transition: all 0.0s;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+.auth-right{
+  background-color: #1D2C33;
+  color: #fff;
+}
+.auth-right h4{
+  color: #fff;
+}
+.auth-right  p{
+  color: #fff;
+}
 body {
-  background-color: var(--bg-color);
+  background-color:#1D2C33 !important  ;
   color: var(--text-secondary-light);
   font-family: "Inter", sans-serif;
   font-size: 1rem;
@@ -11831,12 +11841,12 @@ select option {
   background: rgba(0, 0, 0, 0.7) !important;
 }
 
-.yaxies-more .apexcharts-yaxis {
+/* .yaxies-more .apexcharts-yaxis {
   transform: translateX(20px);
-}
+} */
 
 .apexcharts-canvas {
-  transition: 0s !important;
+  transition: none !important;
 }
 
 /* === apex-chart css end === */
@@ -12417,8 +12427,9 @@ td.fc-header-center {
 }
 
 .auth-left {
-  background: linear-gradient(90deg, #ECF0FF 0%, #FAFBFF 100%);
+  background: #1d2c33 !important;
   width: 50%;
+  border-right: 1px solid;
 }
 
 .auth-right {
@@ -14038,7 +14049,7 @@ span.toggle-password {
   font-size: 50px !important;
   padding-top: 30px;
   padding-bottom: 20px;
-  color: #0d6efd !important;
+  color: #3ecc58 !important;
 }
 
 @media(max-width:1360px){
@@ -14104,4 +14115,51 @@ svg#SvgjsSvg1480 {
 }
 .tab-pane button:hover{
   background: #3ecc58 !important;
+}
+.btn-primary {
+  background: #57ce68 !important;
+  border: 1px solid #57ce68 !important;
+}
+.btn-primary:hover{
+  background: #57ce68 !important;
+  border: 1px solid #57ce68 !important;
+}
+.card-design .card-1{
+  background: linear-gradient(to right, rgb(0 194 255 / 44%), #0067ff) !important;
+}
+.card-design .card-2{
+  background: linear-gradient(to right, rgb(162 0 255 / 41%), rgb(106 58 209)) !important;
+}
+
+.card-design .card-3 {
+  background: linear-gradient(to right, rgb(0 51 255 / 44%), #0067ff) !important;
+}
+.card-design .card-4{
+  background: linear-gradient(to right, rgb(0 255 144 / 19%), #198754) !important;
+}
+.card-design .card-5{
+  background: linear-gradient(to right, #ffc10773, #ffc107) !important;
+}
+.card-design .card-6{
+  background: linear-gradient(to right, #dc35454a, #dc3545) !important;
+}
+.card-design .card-7{
+  background: linear-gradient(to right, #cddc3954, #CDDC39) !important;
+}
+.card-design .card-8{
+  background: linear-gradient(to right, #ff57224a, #FF5722) !important;
+}
+.card-design .card-9{
+  background: linear-gradient(to right, #79554859, #795548) !important;
+}
+.to-top .iconify--radix-icons  path {
+  fill: #fff;
+}
+img.coming-soon-logo {
+  width: 25%;
+}
+@media(max-width:768px){
+  section.row.gy-4.mt-1 {
+    justify-content: center !important;
+}
 }

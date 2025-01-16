@@ -387,7 +387,7 @@ const MasterLayout = ({ children }) => {
 
                       <li>
                         <Link
-                          className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3"
+                          className="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
                           to="/"
                           onClick={Logout}
                         >

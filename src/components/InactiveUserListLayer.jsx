@@ -13,11 +13,13 @@ import jszip from 'jszip';
 import pdfmake from 'pdfmake'
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-
+import Loading from './Loading';
 
 const InactiveUsersListLayer = () => {
     const [data,setData] = useState([]); 
+    const [loading,setLoading] = useState(false)
     const getData = async () => {
+        setLoading(true);
         try {
             const res = await apiGet("superadmin/inactive-users");
             if (res?.data?.status === true) {
@@ -29,8 +31,25 @@ const InactiveUsersListLayer = () => {
                         pageLength: 10,
                         dom: 'Bfrtip', // Add the Buttons container
                         buttons: [
-                             'csv', 'excel', 'print' // Define the export options
-                        ]
+                            {
+                                extend: 'csv', // Download CSV
+                                text: ' <img src="../assets/images/csv.png" alt="CSV" width="20" height="20" /> CSV',
+                            },
+                            {
+                                extend: 'pdf', // PDF export
+                                text: '<img src="../assets/images/pdf.png" alt="CSV" width="20" height="20" /> PDF',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                title: 'Inactive Users',
+                                exportOptions: {
+                                    columns: ':visible', // Export only visible columns
+                                },
+                            },
+                            {
+                                extend: 'print', // Print table
+                                text: '   <img src="../assets/images/print.png" alt="CSV" width="20" height="20" /> Print',
+                            },
+                        ],
                     });
                 }, 0);
             } else {
@@ -38,6 +57,8 @@ const InactiveUsersListLayer = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     };
     useEffect(() => {
@@ -50,6 +71,7 @@ const InactiveUsersListLayer = () => {
     }, []);
     return (
         <div className="card basic-data-table">
+            {loading? <Loading/>:<></>}
             <div className="card-header d-flex justify-content-between">
                 Inactive Users
             </div>

@@ -4,13 +4,14 @@ import ReactApexChart from 'react-apexcharts'
 import { apiGet } from "../../services/client";
 import React, { useEffect, useState } from "react";
 import MeterChart from '../MeterChart';
-
+import Loading from '../Loading';
 const  SuperAdminDashCharts = () => {
 
         const [subscriptionData, setSubscriptionData] = useState([]);
         const [metersdata, setMetersData] = useState(null);
         const [userData,setUserData] = useState(null);
         const [adminData,setAdminData] = useState(null);
+        const [loading,setLoading] = useState(false);
     const [subscriptionChart, setSubscriptionChart] = useState({
         series: [],
         options: {
@@ -70,6 +71,7 @@ const  SuperAdminDashCharts = () => {
 
 
     const getSubscription = async () => {
+        setLoading(true);
         try {
             const res = await apiGet("superadmin/subscription-amount-by-month");
             if (res?.data?.status === true) {
@@ -110,6 +112,8 @@ const  SuperAdminDashCharts = () => {
             }
         } catch (e) {
             console.log(e);
+        }finally{
+            setLoading(false)
         }
     };
 
@@ -268,7 +272,8 @@ const  SuperAdminDashCharts = () => {
 
     return (
         <>
-            <section className="row gy-4 mt-1">
+            <section className="row gy-4 mt-1 justify-content-center">
+                {loading? <Loading/> : <></>}
             <div className="col-md-6">
                 <div className="card h-100 p-0">
                     <div className="card-header border-bottom bg-base py-16 px-24">
