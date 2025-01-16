@@ -209,10 +209,10 @@ const MeterLayerCards = () => {
           }
       return (
           <div className="col-xxl-8">
-              <div className="card radius-8 border-0 p-20">
+              <div className="card radius-8 border-0 p-20 card-design">
                   <div className="row gy-4">
                       <div className="col-xxl-4">
-                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-1 mb-12">
+                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-1 mb-12 card-1">
                               <div className="card-body p-0">
                                   <div className="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
                                       <div className="d-flex align-items-center gap-2 mb-12">
@@ -231,7 +231,7 @@ const MeterLayerCards = () => {
                                   </div>
                               </div>
                           </div>
-                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-2 mb-12">
+                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-2 card-2 mb-12">
                               <div className="card-body p-0">
                                   <div className="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
                                       <div className="d-flex align-items-center gap-2 mb-12">
@@ -251,7 +251,7 @@ const MeterLayerCards = () => {
                                   </div>
                               </div>
                           </div>
-                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-3 mb-0">
+                          <div className="card p-3 radius-8 shadow-none bg-gradient-dark-start-3 card-7 mb-0">
                               <div className="card-body p-0">
                                   <div className="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-0">
                                       <div className="d-flex align-items-center gap-2 mb-12">
