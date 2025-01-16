@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables.js';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate  } from 'react-router-dom';
 import { apiGet, apiPost } from "../services/client";
 import moment from "moment";
 import {toast, ToastContainer } from 'react-toastify';
 import Loading from './Loading';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+
 const UserLists = () => {
     const [data, setData] = useState([]);
     const [first_name, setFirstName] = useState(null);
@@ -19,6 +20,7 @@ const UserLists = () => {
     const [confirm_password, setConfirmPassword] = useState(null);
     const [loading, setLoading] = useState(false);
     const [editItem, setEditItem] = useState(null);
+    const navigate = useNavigate();
 
    
 
@@ -122,7 +124,24 @@ const UserLists = () => {
         } catch (e) {
             console.log(e);
         }
+    }
 
+
+    const SignInUser = async (id) => {
+        const data = {id}
+        try {
+            const res = await apiPost("admin/user-signin", data);
+            if (res?.data?.status == true) {
+                localStorage.setItem("token",res?.data?.token);
+                localStorage.setItem("role",res?.data?.role);
+                navigate("/dashboard")
+
+            } else {
+                console.log(res);
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 
@@ -325,6 +344,7 @@ const UserLists = () => {
                                 <th scope="col">Created At</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
+                                <th scope='col'>Signin</th>
 
                             </tr>
                         </thead>
@@ -377,6 +397,17 @@ const UserLists = () => {
                                             <Icon icon="mdi:eye"/>
                                         </Link>
 
+                                    </td>
+
+                                    <td>
+                                        
+                                        
+                                    <span
+                                                onClick={() => SignInUser(item?.id)}
+                                                className="badge text-sm fw-semibold bg-dark-success-gradient px-20 py-9 radius-4 text-white">Signin</span>
+                                    
+                                
+                                    
                                     </td>
 
                                    

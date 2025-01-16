@@ -137,7 +137,7 @@ const AdminViewLayer = () => {
                                     </span>
                                 </li>
                            
-                                <li className="d-flex align-items-center gap-1 mb-12">
+                                {/* <li className="d-flex align-items-center gap-1 mb-12">
                                     <span className="w-50 text-md fw-semibold text-primary-light">
                                         {" "}
                                         Membership Plan
@@ -145,7 +145,7 @@ const AdminViewLayer = () => {
                                     <span className="w-50 text-secondary-light fw-medium">
                                        {userData?.plan_name}
                                     </span>
-                                </li>
+                                </li> */}
                                 <li className="d-flex align-items-center gap-1 mb-12">
                                     <span className="w-50 text-md fw-semibold text-primary-light">
                                         {" "}

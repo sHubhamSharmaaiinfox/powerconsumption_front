@@ -20,6 +20,7 @@
     "@phosphor-icons/react": "^2.1.7",
     "@popperjs/core": "^2.11.8",
     "@ramonak/react-progress-bar": "^5.2.0",
+    "@syncfusion/ej2-charts": "^28.1.39",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

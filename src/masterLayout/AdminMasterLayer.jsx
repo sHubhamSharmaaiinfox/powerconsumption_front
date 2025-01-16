@@ -218,7 +218,7 @@ const AdminMasterLayer = ({ children }) => {
                             </ul>
                         </li> */}
                         <li>
-                            <Link to="/admin-buy-package">
+                            <Link to="/buy-package">
                                 <Icon
                                     icon="fa-solid:award"
                                     className="menu-icon"

@@ -12,9 +12,10 @@ const MeterViewLayers = () => {
        <MeterLayerCards />
        <MeterChart />
     </div> 
-    <section className="row gy-4 mt-1">
+    
         <MeterDataTable />
-    </section>
+    
+    
     </>
     
     )

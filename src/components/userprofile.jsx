@@ -318,7 +318,7 @@ const getUserDetails = async () => {
                                         <th scope="col">Location</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Token</th>
-                                        <th scope="col">Action</th>
+                                        {/* <th scope="col">Action</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -349,7 +349,7 @@ const getUserDetails = async () => {
                                             </button>
                                             </td>
                                             
-                                            <td className='d-flex justify-content-center'>
+                                            {/* <td className='d-flex justify-content-center'>
                                                  <Link
                                                     to={`/meter-details?id=${item?.id}`}
                                                     className="w-32-px h-32-px me-8 bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center"
@@ -357,7 +357,7 @@ const getUserDetails = async () => {
                                                     <Icon icon="mdi:eye" />
                                                 </Link>
 
-                                            </td>
+                                            </td> */}
                                            
                                         </tr>
                                     ))}

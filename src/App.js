@@ -38,14 +38,15 @@ import InactiveUsersList from "./superadminpages/InactiveUserList";
 import AdminPackageReports from "./superadminpages/AdminPackageReports";
 import EnergySyatem from "./adminpages/EnergySystem";
 import AdminView from "./superadminpages/AdminView";
+import BuyPackages from "./adminpages/BuyPackages";
 function App() {
   return (
     <BrowserRouter>
       <RouteScrollToTop />
       <Routes>
-        <Route exact path="/" element={<UnProtected_routes Component={SignInPage}/>} />
-        <Route exact path="/dashboard" element={<Protected_routes Component={UserDashboard}/>} />
-        <Route exact path='/forgot-password' element={<UnProtected_routes Component={ForgotPasswordPage} />} />
+        <Route exact path = "/" element={<UnProtected_routes Component={SignInPage}/>} />
+        <Route exact path = "/dashboard" element={<Protected_routes Component={UserDashboard}/>} />
+        <Route exact path = '/forgot-password' element={<UnProtected_routes Component={ForgotPasswordPage} />} />
         <Route exact path = '/reset-password' element={<UnProtected_routes Component={NewPassword} />} />
         <Route exact path = '/view-profile' element={<Protected_routes Component={ViewProfilePage} />} />
         <Route exact path = '/pricing' element={<Protected_routes Component={PricingPage} />} />
@@ -78,6 +79,7 @@ function App() {
         <Route exact path = '/activeuser-detail' element={<Protected_routes Component={ ActiveUsersList }/>} />
         <Route exact path = '/inactiveuser-detail' element={<Protected_routes Component={ InactiveUsersList }/>} />
         <Route exact path = '/admin-view' element={<Protected_routes Component={ AdminView }/>} />
+        <Route exact path = '/buy-package' element={<Protected_routes Component={ BuyPackages }/>} />
       </Routes>
     </BrowserRouter>
   );

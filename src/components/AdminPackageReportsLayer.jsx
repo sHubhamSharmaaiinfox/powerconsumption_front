@@ -75,8 +75,8 @@ const AdminPackageReportsLayer = () => {
                             <tr key={index}>
                                 <td>{item?.username}</td>
                                 <td>{item?.plan_name}</td>
-                                <td>{moment(item?.date).format("MMMM Do YYYY, h:mm:ss A")}</td>
-                                <td>{moment(item?.expire_date).format("MMMM Do YYYY, h:mm:ss A")}</td>
+                                <td>{moment(item?.date).format("MMMM Do YYYY")}</td>
+                                <td>{moment(item?.expire_date).format("MMMM Do YYYY")}</td>
                                 <td>{item?.amount}</td>
                                 <td>
                                     {item?.status === "1" ? (
@@ -100,3 +100,6 @@ const AdminPackageReportsLayer = () => {
 }
 
 export default AdminPackageReportsLayer
+
+
+

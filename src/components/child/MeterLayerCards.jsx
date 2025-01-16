@@ -85,7 +85,7 @@ const MeterLayerCards = () => {
                   stroke: {
                       curve: 'smooth',
                       width: 3,
-                      colors: [color1, color2], // Use two colors for the lines
+                      colors: [color1, color2], 
                       lineCap: 'round'
                   },
                   grid: {
