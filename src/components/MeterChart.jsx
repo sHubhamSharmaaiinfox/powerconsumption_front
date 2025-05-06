@@ -14,7 +14,7 @@ const MeterChart = () => {
       const id = searchParams.get("id");
      const [loading,setLoading] = useState(false);      
      const [data,setData] = useState(null);
-      let userOverviewDonutChartSeries = data ? data : [0,0,0]
+      let userOverviewDonutChartSeries = Array.isArray(data) ? data : [0,0,0]
       const socketRef = useRef(null);
       let userOverviewDonutChartOptions = {
           colors: ['#FF9F29', '#487FFF', '#16A34A'],
@@ -73,9 +73,9 @@ const MeterChart = () => {
             const data = {id}
             const res = await apiPost('userapp/kw-chart',data);
             if (res?.data?.status == true){
-           
-                setData(res?.data?.data);
-                
+                // Ensure data is always an array
+                const chartData = Array.isArray(res?.data?.data) ? res?.data?.data : [0,0,0];
+                setData(chartData);
             }
             else{
                 console.log(res?.data?.message)
@@ -152,7 +152,7 @@ const MeterChart = () => {
                                       R
                                   </span>
                               </div>
-                              <span className="text-primary-light fw-bold">{data ? data[0] : 0}</span>
+                              <span className="text-primary-light fw-bold">{Array.isArray(data) && data.length > 0 ? data[0] : 0}</span>
                           </li>
                           <li className="d-flex flex-column gap-8">
                               <div className="d-flex align-items-center gap-2">
@@ -161,7 +161,7 @@ const MeterChart = () => {
                                       Y
                                   </span>
                               </div>
-                              <span className="text-primary-light fw-bold">{data ? data[1] : 0}</span>
+                              <span className="text-primary-light fw-bold">{Array.isArray(data) && data.length > 1 ? data[1] : 0}</span>
                           </li>
                           <li className="d-flex flex-column gap-8">
                               <div className="d-flex align-items-center gap-2">
@@ -170,7 +170,7 @@ const MeterChart = () => {
                                       B
                                   </span>
                               </div>
-                              <span className="text-primary-light fw-bold">{data ? data[2] : 0}</span>
+                              <span className="text-primary-light fw-bold">{Array.isArray(data) && data.length > 2 ? data[2] : 0}</span>
                           </li>
                       </ul>
                   </div>

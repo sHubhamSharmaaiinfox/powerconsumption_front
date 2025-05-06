@@ -13,28 +13,34 @@ const MeterDataTable = () => {
     const socketRef = useRef(null);
     let activePowerSeries = [{
         name: "Active Power",
-        data: cardsData?.data ? [cardsData?.data?.ActivePower_K_W?.R,cardsData?.data?.ActivePower_K_W?.Y,cardsData?.data?.ActivePower_K_W?.B] :[0, 0, 0]
+        data: cardsData?.data && cardsData?.data?.ActivePower_K_W ? 
+            [cardsData?.data?.ActivePower_K_W?.R || 0, cardsData?.data?.ActivePower_K_W?.Y || 0, cardsData?.data?.ActivePower_K_W?.B || 0] : [0, 0, 0]
     },{
         name: "Apparent power",
-        data: cardsData?.data ? [cardsData?.data?.ApparentPower_KVA?.R, cardsData?.data?.ApparentPower_KVA?.Y, cardsData?.data?.ApparentPower_KVA?.B] : [0,0,0]
+        data: cardsData?.data && cardsData?.data?.ApparentPower_KVA ?
+            [cardsData?.data?.ApparentPower_KVA?.R || 0, cardsData?.data?.ApparentPower_KVA?.Y || 0, cardsData?.data?.ApparentPower_KVA?.B || 0] : [0, 0, 0]
     }
     ]
 
 let voltageSeries = [{
     name: "Voltage P-N",
-    data: cardsData?.data ? [cardsData?.data?.Voltage_P_N?.R_N,cardsData?.data?.Voltage_P_N?.Y_N,cardsData?.data?.Voltage_P_N?.B_N] :[0, 0, 0]
+    data: cardsData?.data && cardsData?.data?.Voltage_P_N ?
+        [cardsData?.data?.Voltage_P_N?.R_N || 0, cardsData?.data?.Voltage_P_N?.Y_N || 0, cardsData?.data?.Voltage_P_N?.B_N || 0] : [0, 0, 0]
 },{
     name: "Current",
-    data: cardsData?.data ? [cardsData?.data?.Current?.R, cardsData?.data?.Current?.Y, cardsData?.data?.Current?.B] : [0,0,0]
+    data: cardsData?.data && cardsData?.data?.Current ?
+        [cardsData?.data?.Current?.R || 0, cardsData?.data?.Current?.Y || 0, cardsData?.data?.Current?.B || 0] : [0, 0, 0]
 }
 ]
 
 let thdVoltageSeries = [{
     name: "THD Voltage",
-    data: cardsData?.data ? [cardsData?.data?.THD_Voltage?.R,cardsData?.data?.THD_Voltage?.Y,cardsData?.data?.THD_Voltage?.B] :[0, 0, 0]
+    data: cardsData?.data && cardsData?.data?.THD_Voltage ?
+        [cardsData?.data?.THD_Voltage?.R || 0, cardsData?.data?.THD_Voltage?.Y || 0, cardsData?.data?.THD_Voltage?.B || 0] : [0, 0, 0]
 },{
     name: "THD Current",
-    data: cardsData?.data ? [cardsData?.data?.THD_Current?.R, cardsData?.data?.THD_Current?.Y, cardsData?.data?.THD_Current?.B] : [0,0,0]
+    data: cardsData?.data && cardsData?.data?.THD_Current ?
+        [cardsData?.data?.THD_Current?.R || 0, cardsData?.data?.THD_Current?.Y || 0, cardsData?.data?.THD_Current?.B || 0] : [0, 0, 0]
 }
 ]
 
@@ -173,10 +179,12 @@ let thdVoltageSeries = [{
 
         let series = [{
             name: 'Frequency',
-            data: cardsData?.data ? [cardsData?.data?.Frequency?.R, cardsData?.data?.Frequency?.Y, cardsData?.data?.Frequency?.B] : [0,0,0]
+            data: cardsData?.data && cardsData?.data?.Frequency ? 
+                [cardsData?.data?.Frequency?.R || 0, cardsData?.data?.Frequency?.Y || 0, cardsData?.data?.Frequency?.B || 0] : [0,0,0]
         },{
             name: 'Power Factor',
-            data: cardsData?.data ? [cardsData?.data?.PowerFactor?.R, cardsData?.data?.PowerFactor?.Y, cardsData?.data?.PowerFactor?.B] : [0,0,0]
+            data: cardsData?.data && cardsData?.data?.PowerFactor ? 
+                [cardsData?.data?.PowerFactor?.R || 0, cardsData?.data?.PowerFactor?.Y || 0, cardsData?.data?.PowerFactor?.B || 0] : [0,0,0]
         }]
         let options = {
 

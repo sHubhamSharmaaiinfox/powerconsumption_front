@@ -91,7 +91,7 @@ const MeterLayerCards = () => {
       
               let series = [{
                   name: 'series1',
-                  data: chartData ? chartData : [0,0,0,0,0,0,0,0,0,0,0,0]
+                  data: Array.isArray(chartData) ? chartData : [0,0,0,0,0,0,0,0,0,0,0,0]
               }]
               let options = {
       

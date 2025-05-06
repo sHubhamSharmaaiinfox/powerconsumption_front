@@ -11,6 +11,7 @@ const MeterViewLayers = () => {
     <div className="row gy-4 mb-24">
        <MeterLayerCards />
        <MeterChart />
+       <MeterChartDaily />
     </div> 
     
         <MeterDataTable />

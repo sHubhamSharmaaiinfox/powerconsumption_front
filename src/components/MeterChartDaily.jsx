@@ -87,7 +87,9 @@ const MeterChartDaily = () => {
             const data = {id}
             const res = await apiPost('userapp/meter-chart-daily',data);
             if (res?.data?.status == true){
-                setData(res?.data?.data);
+                // Ensure data is always an array
+                const chartData = Array.isArray(res?.data?.data) ? res?.data?.data : [];
+                setData(chartData);
             }
             else{
                 console.log(res?.data?.message)
@@ -112,7 +114,7 @@ const MeterChartDaily = () => {
                     <h6 className="text-lg fw-semibold mb-0">Meter Chart (Today's)</h6>
                 </div>
                 <div className="card-body p-24">
-                    <ReactApexChart id="defaultLineChart" className="apexcharts-tooltip-style-1" options={defaultLineChartOptions} series={data} type="area"
+                    <ReactApexChart id="defaultLineChart" className="apexcharts-tooltip-style-1" options={defaultLineChartOptions} series={Array.isArray(data) ? data : []} type="area"
                         height={264} />
                 </div>
             </div>
