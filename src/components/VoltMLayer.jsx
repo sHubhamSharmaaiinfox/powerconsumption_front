@@ -91,7 +91,7 @@ const VoltMLayer = () => {
                                 
                                 <td>
                                     <Link to="#" className="text-primary-600">
-                                        Meter {item?.meter_id}
+                                    {item?.meter_id}
                                     </Link>
                                 </td>
                                 <td>{item?.total_power_today.toFixed(4)}</td>

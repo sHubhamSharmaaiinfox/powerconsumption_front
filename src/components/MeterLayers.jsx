@@ -102,7 +102,7 @@ const MeterLayers = () => {
                             <td>
                                 <div className="form-check style-check d-flex align-items-center">
                                     <input className="form-check-input" type="checkbox" />
-                                    <label className="form-check-label">{index}</label>
+                                    <label className="form-check-label">{index+1}</label>
                                 </div>
                             </td>
                             <td>
